@@ -1,0 +1,26 @@
+﻿# Virtual environment
+venv/
+.venv/
+
+# Raw and processed data (large / licensed; keep folders via .gitkeep)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Python / Jupyter junk
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Trained model files
+*.pt
+*.pth
+*.bin
+*.pkl
+*.joblib
+*.safetensors
+*.ckpt
+*.h5
+models/
