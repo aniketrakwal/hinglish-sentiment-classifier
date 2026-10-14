@@ -14,7 +14,8 @@ Output CSV columns: id, text, label, lang_tags (lang_tags is space-separated).
 
 Usage:
     python src/load_data.py --train data/raw/train.txt --val data/raw/val.txt --test data/raw/test.txt
-Any of the three arguments may be left out.
+Any of the three arguments may be left out. If the test labels live in a separate
+CSV (columns Uid,Sentiment), add: --test_labels data/raw/test_labels.txt
 """
 
 import argparse
@@ -71,9 +72,17 @@ def parse_file(path):
     return tweets
 
 
-def process_split(name, in_path, out_dir):
+def process_split(name, in_path, out_dir, labels_path=None):
     """Parse one split, save it as CSV, and print its shape and label counts."""
     df = pd.DataFrame(parse_file(in_path), columns=["id", "text", "label", "lang_tags"])
+
+    # Optional: fill in labels from a separate CSV with columns Uid,Sentiment
+    if labels_path:
+        labels = pd.read_csv(labels_path, dtype=str)
+        id_to_label = dict(zip(labels["Uid"].str.strip(), labels["Sentiment"].str.strip().str.lower()))
+        df["label"] = df["id"].map(id_to_label).fillna("")
+        print(f"{(df['label'] == '').sum()} tweets in {name} had no label in {labels_path}")
+
     out_path = os.path.join(out_dir, f"{name}.csv")
     df.to_csv(out_path, index=False, encoding="utf-8")
 
@@ -90,6 +99,7 @@ def main():
     parser.add_argument("--train", help="path to the raw train file")
     parser.add_argument("--val", help="path to the raw validation file")
     parser.add_argument("--test", help="path to the raw test file")
+    parser.add_argument("--test_labels", help="optional CSV (Uid,Sentiment) with the test labels")
     parser.add_argument("--out_dir", default="data/processed", help="where to write the CSVs")
     args = parser.parse_args()
 
@@ -100,7 +110,8 @@ def main():
 
     for name, path in splits.items():
         if path:
-            process_split(name, path, args.out_dir)
+            labels_path = args.test_labels if name == "test" else None
+            process_split(name, path, args.out_dir, labels_path)
 
 
 if __name__ == "__main__":
