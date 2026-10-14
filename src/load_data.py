@@ -20,8 +20,54 @@ CSV (columns Uid,Sentiment), add: --test_labels data/raw/test_labels.txt
 
 import argparse
 import os
+import re
 
 import pandas as pd
+
+
+# Characters that typically start a mojibake sequence (UTF-8 bytes shown as cp1252 text).
+# For example the emoji bytes F0 9F 98 85 show up as "ð" "Ÿ" "˜" "…".
+MOJIBAKE_MARKERS = "ðÃâÂ"
+
+
+def fix_mojibake_once(token):
+    """Do ONE repair pass. Returns the token unchanged if it has no marker or the repair fails."""
+    # Only try the repair if the token contains a marker character
+    has_marker = False
+    for ch in token:
+        if ch in MOJIBAKE_MARKERS:
+            has_marker = True
+    if not has_marker:
+        return token
+
+    try:
+        # Turn every character back into the byte it came from
+        raw_bytes = bytearray()
+        for ch in token:
+            try:
+                raw_bytes += ch.encode("cp1252")   # normal case, e.g. "ð" -> 0xF0
+            except UnicodeEncodeError:
+                raw_bytes += ch.encode("latin-1")  # bytes cp1252 leaves undefined (0x81, 0x8D, ...)
+        # Those bytes are the real UTF-8 encoding of the original text
+        return raw_bytes.decode("utf-8")
+    except UnicodeError:
+        # Not valid mojibake after all (or contains characters above 255): keep original
+        return token
+
+
+def fix_mojibake(token):
+    """Repair a token whose UTF-8 bytes were wrongly decoded as Windows-1252.
+
+    Example: "ðŸ˜…" -> "😅". Some tokens were damaged twice (e.g. "â€¢" damaged again),
+    so we repeat the repair until nothing changes (at most 3 passes).
+    Returns the token unchanged if it does not look broken or the repair fails.
+    """
+    for _ in range(3):
+        fixed = fix_mojibake_once(token)
+        if fixed == token:  # nothing changed, so we are done
+            break
+        token = fixed
+    return token
 
 
 def parse_file(path):
@@ -42,7 +88,9 @@ def parse_file(path):
     # utf-8-sig silently strips a BOM if the file has one
     with open(path, encoding="utf-8-sig") as f:
         for raw_line in f:
-            line = raw_line.strip()
+            # Strip only plain whitespace (space, tab, newline). A bare .strip() would also
+            # remove characters like the non-breaking space U+00A0, which can be part of a token.
+            line = raw_line.strip(" \t\r\n")
 
             # Blank line = end of the current tweet
             if not line:
@@ -50,8 +98,8 @@ def parse_file(path):
                 current = None
                 continue
 
-            # Split on tabs or any whitespace, so extra spaces don't break us
-            parts = line.split()
+            # Split on tabs and plain spaces only (not .split(), which also splits on U+00A0)
+            parts = [p for p in re.split(r"[ \t]+", line) if p]
 
             if parts[0] == "meta":
                 # A new meta line also ends any tweet that had no blank line after it
@@ -62,8 +110,12 @@ def parse_file(path):
             elif current is not None:
                 # Token line: first item is the word, last item is the language tag
                 # (a lone token with no tag gets the tag "O" = other)
-                token = parts[0]
+                token = fix_mojibake(parts[0])  # one token in, one token out: tags stay aligned
                 tag = parts[1] if len(parts) > 1 else "O"
+                # A token that is only whitespace (e.g. a repaired non-breaking space) carries no
+                # information and would break later .split() calls, so drop it WITH its tag.
+                if token.strip() == "":
+                    continue
                 current["tokens"].append(token)
                 current["tags"].append(tag)
             # Token lines appearing before any meta line are ignored
@@ -81,7 +133,12 @@ def process_split(name, in_path, out_dir, labels_path=None):
         labels = pd.read_csv(labels_path, dtype=str)
         id_to_label = dict(zip(labels["Uid"].str.strip(), labels["Sentiment"].str.strip().str.lower()))
         df["label"] = df["id"].map(id_to_label).fillna("")
-        print(f"{(df['label'] == '').sum()} tweets in {name} had no label in {labels_path}")
+        unmatched = df[df["label"] == ""]
+        if len(unmatched) > 0:
+            print(f"WARNING: {len(unmatched)} {name} tweets have no matching label in {labels_path}")
+            print("  first unmatched ids:", list(unmatched["id"].head(5)))
+        else:
+            print(f"All {len(df)} {name} tweets matched a label.")
 
     out_path = os.path.join(out_dir, f"{name}.csv")
     df.to_csv(out_path, index=False, encoding="utf-8")
