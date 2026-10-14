@@ -25,19 +25,38 @@ import re
 import pandas as pd
 
 
-# Characters that typically start a mojibake sequence (UTF-8 bytes shown as cp1252 text).
-# For example the emoji bytes F0 9F 98 85 show up as "ð" "Ÿ" "˜" "…".
-MOJIBAKE_MARKERS = "ðÃâÂ"
+# How the mojibake pattern is built (read this once, it is short):
+#   UTF-8 stores one character as 1-4 bytes. For anything outside plain ASCII, the FIRST byte
+#   ("lead byte") is 0xC2-0xF4 and every following byte ("continuation byte") is 0x80-0xBF.
+#   When those bytes are wrongly read as Windows-1252 text, each byte becomes a visible
+#   character, so broken text looks like: <lead char> followed by <continuation chars>.
+#   Example: Devanagari "स" = bytes E0 A4 B8 -> "à" "¤" "¸".
+#
+#   LEAD_CHARS         = the characters U+00C2 ... U+00F4 (what bytes 0xC2-0xF4 look like)
+#   CONTINUATION_CHARS = what each byte 0x80-0xBF looks like in cp1252. Bytes 0xA0-0xBF map to
+#                        the same-numbered character; 0x80-0x9F map to special characters such
+#                        as "€" or "Ÿ". We add the invisible control characters U+0080-U+009F
+#                        too: they cover the 5 bytes cp1252 leaves undefined (0x81, 0x8D, 0x8F,
+#                        0x90, 0x9D) and also show up in text that was damaged twice.
+LEAD_CHARS = "".join(chr(code) for code in range(0xC2, 0xF5))
+
+continuation = set()
+for byte_value in range(0x80, 0xC0):
+    # errors="replace" gives "�" for the undefined bytes; we cover those via U+0080-U+009F
+    continuation.add(bytes([byte_value]).decode("cp1252", errors="replace"))
+for code in range(0x80, 0xA0):
+    continuation.add(chr(code))
+continuation.discard("�")
+CONTINUATION_CHARS = "".join(sorted(continuation))
+
+# One lead character immediately followed by one continuation character = looks like mojibake
+MOJIBAKE_PATTERN = re.compile("[" + re.escape(LEAD_CHARS) + "][" + re.escape(CONTINUATION_CHARS) + "]")
 
 
 def fix_mojibake_once(token):
-    """Do ONE repair pass. Returns the token unchanged if it has no marker or the repair fails."""
-    # Only try the repair if the token contains a marker character
-    has_marker = False
-    for ch in token:
-        if ch in MOJIBAKE_MARKERS:
-            has_marker = True
-    if not has_marker:
+    """Do ONE repair pass. Returns the token unchanged if it looks fine or the repair fails."""
+    # Only try the repair if the token contains a "lead char + continuation char" pair
+    if not MOJIBAKE_PATTERN.search(token):
         return token
 
     try:

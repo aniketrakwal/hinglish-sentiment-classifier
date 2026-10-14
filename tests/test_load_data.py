@@ -107,3 +107,24 @@ def test_fix_mojibake_double_encoded():
     # "•" damaged twice: once gives "â\u0080¢", twice gives the string below
     assert fix_mojibake("â€¢") == "•"          # single damage ("â€¢")
     assert fix_mojibake("Ã¢Â€Â¢") == "•"  # double damage
+
+
+def test_fix_mojibake_devanagari():
+    # "सईया" damaged: E0 A4 B8 / E0 A4 88 / E0 A4 AF / E0 A4 BE read as cp1252 text
+    assert fix_mojibake("à¤¸à¤ˆà¤¯à¤¾") == "सईया"
+
+
+def test_fix_mojibake_devanagari_built_from_bytes():
+    # Same idea, but damage real Devanagari ourselves so no typed characters can be wrong
+    for word in ["सईया", "मैं", "कैसे", "भारत"]:
+        damaged = word.encode("utf-8").decode("cp1252", errors="replace")
+        assert fix_mojibake(damaged) == word
+
+
+def test_fix_mojibake_leaves_real_devanagari_alone():
+    assert fix_mojibake("सईया") == "सईया"
+
+
+def test_fix_mojibake_leaves_french_a_grave_alone():
+    for word in ["à", "voilà", "où", "à"]:
+        assert fix_mojibake(word) == word
