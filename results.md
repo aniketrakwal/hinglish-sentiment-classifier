@@ -1,0 +1,14 @@
+# Results
+
+All models use the same `clean_text()` (`src/preprocess.py`) and the same saved train/val/test splits.
+Hyper-parameters are tuned on validation only; test is evaluated once per final model.
+
+| Model | Setup | Val macro-F1 | Test macro-F1 | Notes |
+|-------|-------|--------------|---------------|-------|
+| Dummy | `most_frequent` (always "neutral") | 0.1822 | 0.1789 | Floor. Accuracy: val 0.3760, test 0.3667. |
+| TF-IDF + Logistic Regression | char_wb (2,5) n-grams, C=0.5, `class_weight="balanced"`, 66,534 features | 0.6226 | 0.6849 | Accuracy: val 0.6223, test 0.6837. Per-class val F1: neg 0.659, neu 0.519, pos 0.690. Neutral is the weak class. |
+
+Notes
+- Run `python src/train_ml.py` to reproduce. The full 15-run sweep (3 feature setups x 5 values of C) is in `results/ml_experiments.csv`.
+- Test scores are about 6 points higher than validation scores. The cause has not been investigated. Do not read this as a sign of tuning on test: the test set was used exactly once, after the setup was chosen on validation.
+- Validation has 3,000 tweets, so differences of about 1 point between setups are within noise.
