@@ -1,0 +1,98 @@
+CUDA GPU available: False -> using cpu
+vocabulary size: 12884 (incl. <pad>, <unk>)
+share of val tokens that are <unk>: 9.9%
+class weights (negative, neutral, positive): [1.138, 0.887, 1.007]
+
+--- bilstm, seed 42 ---
+epoch  1  train loss 1.0077  val loss 0.9383  val macro-F1 0.4843  (22.8s)
+epoch  2  train loss 0.8980  val loss 0.8969  val macro-F1 0.5648  (23.0s)
+epoch  3  train loss 0.8374  val loss 0.8954  val macro-F1 0.5582  (24.1s)
+epoch  4  train loss 0.7920  val loss 0.8921  val macro-F1 0.5605  (22.3s)
+epoch  5  train loss 0.7393  val loss 0.8947  val macro-F1 0.5807  (22.5s)
+epoch  6  train loss 0.6904  val loss 0.9394  val macro-F1 0.5817  (22.0s)
+epoch  7  train loss 0.6372  val loss 0.9955  val macro-F1 0.5843  (22.2s)
+epoch  8  train loss 0.5779  val loss 1.0096  val macro-F1 0.5766  (22.3s)
+epoch  9  train loss 0.5222  val loss 1.1201  val macro-F1 0.5750  (22.2s)
+epoch 10  train loss 0.4769  val loss 1.1695  val macro-F1 0.5761  (22.2s)
+early stop: no improvement for 3 epochs
+
+--- bilstm, seed 43 ---
+epoch  1  train loss 1.0035  val loss 0.9142  val macro-F1 0.5030  (22.4s)
+epoch  2  train loss 0.8995  val loss 0.8895  val macro-F1 0.5506  (22.5s)
+epoch  3  train loss 0.8415  val loss 0.8779  val macro-F1 0.5715  (22.5s)
+epoch  4  train loss 0.7927  val loss 0.8854  val macro-F1 0.5845  (21.9s)
+epoch  5  train loss 0.7387  val loss 0.8915  val macro-F1 0.5787  (22.2s)
+epoch  6  train loss 0.6903  val loss 0.9684  val macro-F1 0.5684  (22.1s)
+epoch  7  train loss 0.6330  val loss 1.0031  val macro-F1 0.5732  (23.1s)
+early stop: no improvement for 3 epochs
+
+--- bilstm, seed 44 ---
+epoch  1  train loss 1.0049  val loss 0.9347  val macro-F1 0.4830  (23.0s)
+epoch  2  train loss 0.8949  val loss 0.9057  val macro-F1 0.5321  (23.0s)
+epoch  3  train loss 0.8377  val loss 0.8815  val macro-F1 0.5725  (22.8s)
+epoch  4  train loss 0.7841  val loss 0.9316  val macro-F1 0.5463  (22.7s)
+epoch  5  train loss 0.7305  val loss 0.8851  val macro-F1 0.5922  (22.6s)
+epoch  6  train loss 0.6797  val loss 0.9743  val macro-F1 0.5589  (22.4s)
+epoch  7  train loss 0.6265  val loss 0.9767  val macro-F1 0.5739  (22.8s)
+epoch  8  train loss 0.5761  val loss 1.0123  val macro-F1 0.5791  (699.4s)
+early stop: no improvement for 3 epochs
+
+--- lstm, seed 42 ---
+epoch  1  train loss 1.0268  val loss 0.9660  val macro-F1 0.4582  (20.9s)
+epoch  2  train loss 0.9196  val loss 0.9075  val macro-F1 0.5553  (14.5s)
+epoch  3  train loss 0.8647  val loss 0.9082  val macro-F1 0.5468  (14.0s)
+epoch  4  train loss 0.8301  val loss 0.9096  val macro-F1 0.5606  (13.6s)
+epoch  5  train loss 0.7901  val loss 0.9001  val macro-F1 0.5804  (13.8s)
+epoch  6  train loss 0.7449  val loss 0.9087  val macro-F1 0.5856  (13.4s)
+epoch  7  train loss 0.7083  val loss 0.9293  val macro-F1 0.5927  (13.5s)
+epoch  8  train loss 0.6699  val loss 0.9317  val macro-F1 0.5854  (13.3s)
+epoch  9  train loss 0.6369  val loss 0.9120  val macro-F1 0.5946  (13.7s)
+epoch 10  train loss 0.5948  val loss 1.0571  val macro-F1 0.5779  (13.6s)
+epoch 11  train loss 0.5600  val loss 1.1026  val macro-F1 0.5887  (13.7s)
+epoch 12  train loss 0.5240  val loss 1.1098  val macro-F1 0.5934  (13.6s)
+early stop: no improvement for 3 epochs
+
+--- lstm, seed 43 ---
+epoch  1  train loss 1.0242  val loss 0.9347  val macro-F1 0.4825  (759.7s)
+epoch  2  train loss 0.9201  val loss 0.9170  val macro-F1 0.5121  (14.5s)
+epoch  3  train loss 0.8715  val loss 0.8866  val macro-F1 0.5639  (10.5s)
+epoch  4  train loss 0.8286  val loss 0.8897  val macro-F1 0.5820  (9.0s)
+epoch  5  train loss 0.7893  val loss 0.8760  val macro-F1 0.5839  (9.6s)
+epoch  6  train loss 0.7536  val loss 0.9160  val macro-F1 0.5767  (9.7s)
+epoch  7  train loss 0.7096  val loss 0.9340  val macro-F1 0.5689  (9.2s)
+epoch  8  train loss 0.6720  val loss 0.9211  val macro-F1 0.5775  (9.4s)
+early stop: no improvement for 3 epochs
+
+--- lstm, seed 44 ---
+epoch  1  train loss 1.0208  val loss 0.9408  val macro-F1 0.4786  (9.5s)
+epoch  2  train loss 0.9131  val loss 0.9208  val macro-F1 0.5215  (9.6s)
+epoch  3  train loss 0.8649  val loss 0.9067  val macro-F1 0.5494  (10.1s)
+epoch  4  train loss 0.8239  val loss 0.9060  val macro-F1 0.5512  (11.1s)
+epoch  5  train loss 0.7794  val loss 0.8979  val macro-F1 0.5763  (9.0s)
+epoch  6  train loss 0.7476  val loss 0.9122  val macro-F1 0.5689  (8.8s)
+epoch  7  train loss 0.7074  val loss 0.9715  val macro-F1 0.5677  (8.9s)
+epoch  8  train loss 0.6678  val loss 0.9461  val macro-F1 0.5759  (8.8s)
+early stop: no improvement for 3 epochs
+
+config  seed  best_epoch  val_accuracy  val_macro_f1  val_f1_negative  val_f1_neutral  val_f1_positive  train_time_s
+bilstm    42           7        0.5880        0.5843           0.6526          0.4378           0.6627         225.6
+bilstm    43           4        0.5807        0.5845           0.6158          0.4768           0.6609         156.5
+bilstm    44           5        0.5910        0.5922           0.6535          0.4787           0.6443         858.8
+  lstm    42           9        0.5897        0.5946           0.6482          0.5034           0.6323         171.6
+  lstm    43           5        0.5867        0.5839           0.6442          0.4461           0.6615         831.7
+  lstm    44           5        0.5800        0.5763           0.6435          0.4296           0.6559          75.9
+
+Mean ± std over seeds (validation)
+  bilstm  macro-F1 0.5870 ± 0.0045   accuracy 0.5866 ± 0.0053   best epoch 5.3   time 414s
+  lstm    macro-F1 0.5850 ± 0.0092   accuracy 0.5854 ± 0.0049   best epoch 6.3   time 360s
+
+Chosen config (best mean val macro-F1): bilstm
+
+TEST results of the chosen config
+config  seed  test_accuracy  test_macro_f1  test_f1_negative  test_f1_neutral  test_f1_positive
+bilstm    42         0.6330         0.6301            0.6756           0.4954            0.7195
+bilstm    43         0.6297         0.6337            0.6459           0.5355            0.7197
+bilstm    44         0.6290         0.6317            0.6673           0.5134            0.7142
+  test macro-F1 0.6318 ± 0.0018   test accuracy 0.6306 ± 0.0021
+
+Saved 1227 misclassified validation tweets (config bilstm, seed 44)

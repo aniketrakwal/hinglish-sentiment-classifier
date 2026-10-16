@@ -1,4 +1,4 @@
-﻿pandas
+pandas
 numpy
 scikit-learn
 matplotlib
@@ -7,3 +7,5 @@ jupyter
 emoji
 pyyaml
 pytest
+# torch is the CPU build: pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch
