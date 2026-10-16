@@ -1,0 +1,4 @@
+model,seed,val_macro_f1,test_accuracy,test_macro_f1,test_f1_negative,test_f1_neutral,test_f1_positive
+hing-roberta,42,0.6786,0.7330,0.7365,0.7608,0.6558,0.7930
+hing-roberta,43,0.6775,0.7490,0.7505,0.7833,0.6602,0.8080
+hing-roberta,44,0.6827,0.7393,0.7437,0.7713,0.6705,0.7894

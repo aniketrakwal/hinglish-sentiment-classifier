@@ -1,48 +1,48 @@
 {
   "model": "google/muril-base-cased",
   "seed": 42,
-  "max_length": 48,
+  "max_length": 64,
   "total_params": 237558531,
   "trainable_params": 86043651,
   "embedding_params": 151514880,
-  "peak_gpu_allocated_gib": 2.112,
+  "peak_gpu_allocated_gib": 2.133,
   "peak_gpu_reserved_gib": 2.223,
-  "train_minutes": 7.0,
+  "train_minutes": 7.2,
   "best_val": {
-    "accuracy": 0.6443333333333333,
-    "macro_f1": 0.6486405133300904,
-    "f1_negative": 0.6624785836664763,
-    "f1_neutral": 0.5748135146994295,
-    "f1_positive": 0.7086294416243655
+    "accuracy": 0.6376666666666667,
+    "macro_f1": 0.6413364098374102,
+    "f1_negative": 0.6629895201323773,
+    "f1_neutral": 0.5534820209376422,
+    "f1_positive": 0.7075376884422111
   },
   "epochs": [
     {
       "epoch": 1,
-      "train_loss": 1.0098666561351104,
-      "val_loss": 0.8992506265640259,
-      "val_macro_f1": 0.5835058040399462,
-      "epoch_time_s": 100.9
+      "train_loss": 1.0185103113511027,
+      "val_loss": 0.9163385629653931,
+      "val_macro_f1": 0.5463182285183984,
+      "epoch_time_s": 109.7
     },
     {
       "epoch": 2,
-      "train_loss": 0.8548587205674913,
-      "val_loss": 0.8340628147125244,
-      "val_macro_f1": 0.6277755492666633,
-      "epoch_time_s": 102.3
+      "train_loss": 0.8673290506998698,
+      "val_loss": 0.8329840302467346,
+      "val_macro_f1": 0.6353634094652897,
+      "epoch_time_s": 101.7
     },
     {
       "epoch": 3,
-      "train_loss": 0.7706247127757352,
-      "val_loss": 0.8154470324516296,
-      "val_macro_f1": 0.6459815684284163,
-      "epoch_time_s": 105.2
+      "train_loss": 0.7837926348517923,
+      "val_loss": 0.8241472840309143,
+      "val_macro_f1": 0.6347368501051177,
+      "epoch_time_s": 108.3
     },
     {
       "epoch": 4,
-      "train_loss": 0.7204450056287978,
-      "val_loss": 0.8236079216003418,
-      "val_macro_f1": 0.6486405133300904,
-      "epoch_time_s": 104.2
+      "train_loss": 0.7339547644721138,
+      "val_loss": 0.8269550800323486,
+      "val_macro_f1": 0.6413364098374102,
+      "epoch_time_s": 107.0
     }
   ]
 }

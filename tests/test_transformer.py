@@ -61,3 +61,39 @@ def test_compute_metrics_perfect_and_wrong_predictions():
     assert metrics["accuracy"] == 1.0 and metrics["macro_f1"] == 1.0
     rotated = np.eye(3)[(labels + 1) % 3]                # every prediction wrong
     assert compute_metrics((rotated, labels))["accuracy"] == 0.0
+
+
+# ---------------------------------------------------------------- helpers of compare_transformers.py
+def test_predictions_from_errors_fills_in_correct_predictions(tmp_path):
+    import pandas as pd
+    from compare_transformers import predictions_from_errors
+    val = pd.DataFrame({"id": ["1", "2", "3"], "label": ["negative", "neutral", "positive"]})
+    errors = tmp_path / "errors.csv"
+    errors.write_text("id,predicted_label\n2,positive\n", encoding="utf-8")
+    # only tweet 2 is a mistake; tweets 1 and 3 were predicted correctly
+    assert predictions_from_errors(val, str(errors)) == ["negative", "positive", "positive"]
+
+
+def test_best_epoch_is_the_epoch_with_highest_val_macro_f1():
+    from compare_transformers import best_epoch
+    summary = {"epochs": [{"epoch": 1, "val_macro_f1": 0.5}, {"epoch": 2, "val_macro_f1": 0.7},
+                          {"epoch": 3, "val_macro_f1": 0.6}]}
+    assert best_epoch(summary) == 2
+
+
+def test_mean_std_formats_mean_and_sample_std():
+    from compare_transformers import mean_std
+    assert mean_std([0.5, 0.6, 0.7]) == "0.6000 ± 0.1000"
+
+
+def test_run_transformers_skips_only_runs_made_with_the_same_max_length(tmp_path, monkeypatch):
+    import json
+    import run_transformers as rt
+    monkeypatch.setattr(rt, "RESULTS_DIR", str(tmp_path))
+    model = "google/muril-base-cased"
+    path = tmp_path / "muril-base-cased_seed42_val_summary.json"
+    path.write_text(json.dumps({"model": model, "max_length": 48}), encoding="utf-8")
+    assert rt.already_done(model, 42) is False          # an old 48-token result must be re-run
+    path.write_text(json.dumps({"model": model, "max_length": 64}), encoding="utf-8")
+    assert rt.already_done(model, 42) is True
+    assert rt.already_done(model, 43) is False          # no file at all

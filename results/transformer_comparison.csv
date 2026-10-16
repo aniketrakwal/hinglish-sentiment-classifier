@@ -1,0 +1,4 @@
+model,seeds,val_accuracy,val_macro_f1,f1_negative,f1_neutral,f1_positive,best_epoch_per_seed,sec_per_epoch,peak_gpu_gib,total_params_M,trainable_params_M
+muril-base-cased,3,0.6408 ± 0.0027,0.6447 ± 0.0030,0.6638 ± 0.0022,0.5621 ± 0.0082,0.7082 ± 0.0009,4/4/4,107.6,2.13,237.6,86.0
+hing-roberta,3,0.6770 ± 0.0019,0.6796 ± 0.0028,0.7230 ± 0.0007,0.5909 ± 0.0166,0.7249 ± 0.0091,4/2/3,108.1,2.29,278.0,86.0
+xlm-roberta-base,3,0.6391 ± 0.0030,0.6411 ± 0.0040,0.6645 ± 0.0003,0.5494 ± 0.0124,0.7093 ± 0.0010,3/4/4,106.5,2.29,278.0,86.0

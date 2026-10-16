@@ -1,0 +1,9 @@
+Transformer choice, made on VALIDATION only (2026-10-16 20:02).
+No test-set evaluation had been done when this file was written.
+
+  hing-roberta               mean val macro-F1 0.6796 ± 0.0028  (3 seeds)
+  muril-base-cased           mean val macro-F1 0.6447 ± 0.0030  (3 seeds)
+  xlm-roberta-base           mean val macro-F1 0.6411 ± 0.0040  (3 seeds)
+
+WINNER: l3cube-pune/hing-roberta
+Margin over runner-up (muril-base-cased): +0.0349 = 11.7 x the larger seed std.

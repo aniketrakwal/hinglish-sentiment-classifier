@@ -1,113 +1,113 @@
 python: D:\hinglish\venv\Scripts\python.exe
 torch: 2.14.1+cu126 | CUDA available: True
 GPU: NVIDIA GeForce RTX 3050 Laptop GPU | total memory 4.00 GiB
-train 14000 tweets, val 3000 tweets, max_length 48
+train 14000 tweets, val 3000 tweets, max_length 64
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 26579.20it/s]
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 22919.69it/s]
 [transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: google/muril-base-cased
 Key                                        | Status     | 
 -------------------------------------------+------------+-
-cls.predictions.decoder.weight             | UNEXPECTED | 
-cls.predictions.bias                       | UNEXPECTED | 
-cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
-cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.dense.bias       | UNEXPECTED | 
 cls.seq_relationship.bias                  | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
 cls.predictions.transform.dense.weight     | UNEXPECTED | 
 cls.predictions.decoder.bias               | UNEXPECTED | 
-cls.predictions.transform.LayerNorm.bias   | UNEXPECTED | 
-cls.predictions.transform.dense.bias       | UNEXPECTED | 
-classifier.bias                            | MISSING    | 
+cls.seq_relationship.weight                | UNEXPECTED | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED | 
+cls.predictions.decoder.weight             | UNEXPECTED | 
+cls.predictions.bias                       | UNEXPECTED | 
 classifier.weight                          | MISSING    | 
+classifier.bias                            | MISSING    | 
 
 Notes:
 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
 parameters: total 237,558,531 | trainable 86,043,651 | word-embedding table 151,514,880 (63.8% of all parameters)
-{'loss': '2.197', 'grad_norm': '0.5159', 'learning_rate': '2.727e-06', 'epoch': '0.05714'}
-{'loss': '2.196', 'grad_norm': '0.4768', 'learning_rate': '5.568e-06', 'epoch': '0.1143'}
-{'loss': '2.196', 'grad_norm': '0.4575', 'learning_rate': '8.409e-06', 'epoch': '0.1714'}
-{'loss': '2.187', 'grad_norm': '0.7518', 'learning_rate': '1.125e-05', 'epoch': '0.2286'}
-{'loss': '2.158', 'grad_norm': '2.514', 'learning_rate': '1.409e-05', 'epoch': '0.2857'}
-{'loss': '2.106', 'grad_norm': '0.9543', 'learning_rate': '1.693e-05', 'epoch': '0.3429'}
-{'loss': '2.077', 'grad_norm': '6.331', 'learning_rate': '1.977e-05', 'epoch': '0.4'}
-{'loss': '2.026', 'grad_norm': '6.146', 'learning_rate': '1.971e-05', 'epoch': '0.4571'}
-{'loss': '2.02', 'grad_norm': '4.166', 'learning_rate': '1.939e-05', 'epoch': '0.5143'}
-{'loss': '1.978', 'grad_norm': '10.44', 'learning_rate': '1.907e-05', 'epoch': '0.5714'}
-{'loss': '1.959', 'grad_norm': '6.255', 'learning_rate': '1.876e-05', 'epoch': '0.6286'}
-{'loss': '1.907', 'grad_norm': '18.17', 'learning_rate': '1.844e-05', 'epoch': '0.6857'}
-{'loss': '1.92', 'grad_norm': '4.556', 'learning_rate': '1.812e-05', 'epoch': '0.7429'}
-{'loss': '1.889', 'grad_norm': '6.25', 'learning_rate': '1.78e-05', 'epoch': '0.8'}
-{'loss': '1.852', 'grad_norm': '11.98', 'learning_rate': '1.749e-05', 'epoch': '0.8571'}
-{'loss': '1.862', 'grad_norm': '3.911', 'learning_rate': '1.717e-05', 'epoch': '0.9143'}
-{'loss': '1.806', 'grad_norm': '15.95', 'learning_rate': '1.685e-05', 'epoch': '0.9714'}
-{'eval_loss': '0.8993', 'eval_accuracy': '0.593', 'eval_macro_f1': '0.5835', 'eval_f1_negative': '0.6425', 'eval_f1_neutral': '0.409', 'eval_f1_positive': '0.699', 'eval_runtime': '3.981', 'eval_samples_per_second': '753.5', 'eval_steps_per_second': '23.61', 'epoch': '1'}
-EPOCH 1: train loss 1.0099  val loss 0.8993  val macro-F1 0.5835  time 100.9s  peak GPU memory so far 2.11 GiB
-Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.14s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.14s/it]
-{'loss': '1.783', 'grad_norm': '6.153', 'learning_rate': '1.654e-05', 'epoch': '1.027'}
-{'loss': '1.83', 'grad_norm': '15.42', 'learning_rate': '1.622e-05', 'epoch': '1.085'}
-{'loss': '1.781', 'grad_norm': '10.49', 'learning_rate': '1.59e-05', 'epoch': '1.142'}
-{'loss': '1.749', 'grad_norm': '6.912', 'learning_rate': '1.558e-05', 'epoch': '1.199'}
-{'loss': '1.763', 'grad_norm': '3.923', 'learning_rate': '1.527e-05', 'epoch': '1.256'}
-{'loss': '1.671', 'grad_norm': '8.211', 'learning_rate': '1.495e-05', 'epoch': '1.313'}
-{'loss': '1.708', 'grad_norm': '13.27', 'learning_rate': '1.463e-05', 'epoch': '1.37'}
-{'loss': '1.736', 'grad_norm': '7.678', 'learning_rate': '1.431e-05', 'epoch': '1.427'}
-{'loss': '1.711', 'grad_norm': '5.458', 'learning_rate': '1.4e-05', 'epoch': '1.485'}
-{'loss': '1.723', 'grad_norm': '9.607', 'learning_rate': '1.368e-05', 'epoch': '1.542'}
-{'loss': '1.662', 'grad_norm': '9.342', 'learning_rate': '1.336e-05', 'epoch': '1.599'}
-{'loss': '1.685', 'grad_norm': '9.287', 'learning_rate': '1.305e-05', 'epoch': '1.656'}
-{'loss': '1.637', 'grad_norm': '12.42', 'learning_rate': '1.273e-05', 'epoch': '1.713'}
-{'loss': '1.707', 'grad_norm': '15.16', 'learning_rate': '1.241e-05', 'epoch': '1.77'}
-{'loss': '1.658', 'grad_norm': '10.43', 'learning_rate': '1.209e-05', 'epoch': '1.827'}
-{'loss': '1.677', 'grad_norm': '5.835', 'learning_rate': '1.178e-05', 'epoch': '1.885'}
-{'loss': '1.643', 'grad_norm': '9.137', 'learning_rate': '1.146e-05', 'epoch': '1.942'}
-{'loss': '1.652', 'grad_norm': '12.96', 'learning_rate': '1.114e-05', 'epoch': '1.999'}
-{'eval_loss': '0.8341', 'eval_accuracy': '0.625', 'eval_macro_f1': '0.6278', 'eval_f1_negative': '0.6527', 'eval_f1_neutral': '0.5258', 'eval_f1_positive': '0.7048', 'eval_runtime': '4.021', 'eval_samples_per_second': '746.1', 'eval_steps_per_second': '23.38', 'epoch': '2'}
-EPOCH 2: train loss 0.8549  val loss 0.8341  val macro-F1 0.6278  time 102.3s  peak GPU memory so far 2.11 GiB
-Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.04it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.04it/s]
-{'loss': '1.555', 'grad_norm': '7.236', 'learning_rate': '1.082e-05', 'epoch': '2.055'}
-{'loss': '1.576', 'grad_norm': '9.975', 'learning_rate': '1.051e-05', 'epoch': '2.112'}
-{'loss': '1.583', 'grad_norm': '9.799', 'learning_rate': '1.019e-05', 'epoch': '2.169'}
-{'loss': '1.519', 'grad_norm': '10.47', 'learning_rate': '9.873e-06', 'epoch': '2.226'}
-{'loss': '1.48', 'grad_norm': '9.66', 'learning_rate': '9.556e-06', 'epoch': '2.283'}
-{'loss': '1.603', 'grad_norm': '15.06', 'learning_rate': '9.239e-06', 'epoch': '2.341'}
-{'loss': '1.538', 'grad_norm': '14.06', 'learning_rate': '8.921e-06', 'epoch': '2.398'}
-{'loss': '1.555', 'grad_norm': '14.21', 'learning_rate': '8.604e-06', 'epoch': '2.455'}
-{'loss': '1.556', 'grad_norm': '15.42', 'learning_rate': '8.287e-06', 'epoch': '2.512'}
-{'loss': '1.551', 'grad_norm': '14.9', 'learning_rate': '7.97e-06', 'epoch': '2.569'}
-{'loss': '1.535', 'grad_norm': '25.97', 'learning_rate': '7.652e-06', 'epoch': '2.626'}
-{'loss': '1.547', 'grad_norm': '18.2', 'learning_rate': '7.335e-06', 'epoch': '2.683'}
-{'loss': '1.471', 'grad_norm': '11.69', 'learning_rate': '7.018e-06', 'epoch': '2.741'}
-{'loss': '1.572', 'grad_norm': '9.446', 'learning_rate': '6.701e-06', 'epoch': '2.798'}
-{'loss': '1.538', 'grad_norm': '11.69', 'learning_rate': '6.383e-06', 'epoch': '2.855'}
-{'loss': '1.524', 'grad_norm': '12.77', 'learning_rate': '6.066e-06', 'epoch': '2.912'}
-{'loss': '1.499', 'grad_norm': '9.48', 'learning_rate': '5.749e-06', 'epoch': '2.969'}
-{'eval_loss': '0.8154', 'eval_accuracy': '0.641', 'eval_macro_f1': '0.646', 'eval_f1_negative': '0.6606', 'eval_f1_neutral': '0.5709', 'eval_f1_positive': '0.7064', 'eval_runtime': '3.946', 'eval_samples_per_second': '760.2', 'eval_steps_per_second': '23.82', 'epoch': '3'}
-EPOCH 3: train loss 0.7706  val loss 0.8154  val macro-F1 0.6460  time 105.2s  peak GPU memory so far 2.11 GiB
-Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.01s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.01s/it]
-{'loss': '1.43', 'grad_norm': '12.72', 'learning_rate': '5.431e-06', 'epoch': '3.025'}
-{'loss': '1.497', 'grad_norm': '15.75', 'learning_rate': '5.114e-06', 'epoch': '3.082'}
-{'loss': '1.456', 'grad_norm': '11.71', 'learning_rate': '4.797e-06', 'epoch': '3.139'}
-{'loss': '1.493', 'grad_norm': '12.07', 'learning_rate': '4.48e-06', 'epoch': '3.197'}
-{'loss': '1.463', 'grad_norm': '14.71', 'learning_rate': '4.162e-06', 'epoch': '3.254'}
-{'loss': '1.432', 'grad_norm': '13.7', 'learning_rate': '3.845e-06', 'epoch': '3.311'}
-{'loss': '1.394', 'grad_norm': '23.49', 'learning_rate': '3.528e-06', 'epoch': '3.368'}
-{'loss': '1.4', 'grad_norm': '19.77', 'learning_rate': '3.211e-06', 'epoch': '3.425'}
-{'loss': '1.479', 'grad_norm': '11.24', 'learning_rate': '2.893e-06', 'epoch': '3.482'}
-{'loss': '1.459', 'grad_norm': '9.6', 'learning_rate': '2.576e-06', 'epoch': '3.539'}
-{'loss': '1.412', 'grad_norm': '13.27', 'learning_rate': '2.259e-06', 'epoch': '3.597'}
-{'loss': '1.432', 'grad_norm': '12.11', 'learning_rate': '1.942e-06', 'epoch': '3.654'}
-{'loss': '1.436', 'grad_norm': '15.76', 'learning_rate': '1.624e-06', 'epoch': '3.711'}
-{'loss': '1.423', 'grad_norm': '15.24', 'learning_rate': '1.307e-06', 'epoch': '3.768'}
-{'loss': '1.461', 'grad_norm': '14.39', 'learning_rate': '9.898e-07', 'epoch': '3.825'}
-{'loss': '1.427', 'grad_norm': '10.84', 'learning_rate': '6.726e-07', 'epoch': '3.882'}
-{'loss': '1.441', 'grad_norm': '24.16', 'learning_rate': '3.553e-07', 'epoch': '3.939'}
-{'loss': '1.402', 'grad_norm': '14.59', 'learning_rate': '3.807e-08', 'epoch': '3.997'}
-{'eval_loss': '0.8236', 'eval_accuracy': '0.6443', 'eval_macro_f1': '0.6486', 'eval_f1_negative': '0.6625', 'eval_f1_neutral': '0.5748', 'eval_f1_positive': '0.7086', 'eval_runtime': '3.975', 'eval_samples_per_second': '754.8', 'eval_steps_per_second': '23.65', 'epoch': '4'}
-EPOCH 4: train loss 0.7204  val loss 0.8236  val macro-F1 0.6486  time 104.2s  peak GPU memory so far 2.11 GiB
-Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.08it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  1.08it/s]
-{'train_runtime': '417', 'train_samples_per_second': '134.3', 'train_steps_per_second': '4.201', 'train_loss': '1.674', 'epoch': '4'}
+{'loss': '2.197', 'grad_norm': '0.5239', 'learning_rate': '2.727e-06', 'epoch': '0.05714'}
+{'loss': '2.196', 'grad_norm': '0.471', 'learning_rate': '5.568e-06', 'epoch': '0.1143'}
+{'loss': '2.196', 'grad_norm': '0.4581', 'learning_rate': '8.409e-06', 'epoch': '0.1714'}
+{'loss': '2.187', 'grad_norm': '0.5511', 'learning_rate': '1.125e-05', 'epoch': '0.2286'}
+{'loss': '2.159', 'grad_norm': '0.7158', 'learning_rate': '1.409e-05', 'epoch': '0.2857'}
+{'loss': '2.111', 'grad_norm': '2.302', 'learning_rate': '1.693e-05', 'epoch': '0.3429'}
+{'loss': '2.086', 'grad_norm': '2.033', 'learning_rate': '1.977e-05', 'epoch': '0.4'}
+{'loss': '2.052', 'grad_norm': 'inf', 'learning_rate': '1.971e-05', 'epoch': '0.4571'}
+{'loss': '2.035', 'grad_norm': '11.34', 'learning_rate': '1.939e-05', 'epoch': '0.5143'}
+{'loss': '2.019', 'grad_norm': '5.188', 'learning_rate': '1.907e-05', 'epoch': '0.5714'}
+{'loss': '1.964', 'grad_norm': '6.163', 'learning_rate': '1.876e-05', 'epoch': '0.6286'}
+{'loss': '1.929', 'grad_norm': '5.786', 'learning_rate': '1.844e-05', 'epoch': '0.6857'}
+{'loss': '1.947', 'grad_norm': '3.175', 'learning_rate': '1.812e-05', 'epoch': '0.7429'}
+{'loss': '1.919', 'grad_norm': '18.81', 'learning_rate': '1.78e-05', 'epoch': '0.8'}
+{'loss': '1.878', 'grad_norm': '4.266', 'learning_rate': '1.749e-05', 'epoch': '0.8571'}
+{'loss': '1.907', 'grad_norm': '4.752', 'learning_rate': '1.717e-05', 'epoch': '0.9143'}
+{'loss': '1.847', 'grad_norm': '12.06', 'learning_rate': '1.685e-05', 'epoch': '0.9714'}
+{'eval_loss': '0.9163', 'eval_accuracy': '0.5707', 'eval_macro_f1': '0.5463', 'eval_f1_negative': '0.6344', 'eval_f1_neutral': '0.3144', 'eval_f1_positive': '0.6902', 'eval_runtime': '3.699', 'eval_samples_per_second': '811', 'eval_steps_per_second': '25.41', 'epoch': '1'}
+EPOCH 1: train loss 1.0185  val loss 0.9163  val macro-F1 0.5463  time 109.7s  peak GPU memory so far 2.13 GiB
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:02<00:00,  2.36s/it]Writing model shards: 100%|██████████| 1/1 [00:02<00:00,  2.36s/it]
+{'loss': '1.801', 'grad_norm': '6.459', 'learning_rate': '1.654e-05', 'epoch': '1.027'}
+{'loss': '1.846', 'grad_norm': '13.29', 'learning_rate': '1.622e-05', 'epoch': '1.085'}
+{'loss': '1.794', 'grad_norm': '7.983', 'learning_rate': '1.59e-05', 'epoch': '1.142'}
+{'loss': '1.778', 'grad_norm': '5.815', 'learning_rate': '1.558e-05', 'epoch': '1.199'}
+{'loss': '1.783', 'grad_norm': '2.612', 'learning_rate': '1.527e-05', 'epoch': '1.256'}
+{'loss': '1.722', 'grad_norm': '7.428', 'learning_rate': '1.495e-05', 'epoch': '1.313'}
+{'loss': '1.729', 'grad_norm': '5.511', 'learning_rate': '1.463e-05', 'epoch': '1.37'}
+{'loss': '1.739', 'grad_norm': '11.29', 'learning_rate': '1.431e-05', 'epoch': '1.427'}
+{'loss': '1.734', 'grad_norm': '6.873', 'learning_rate': '1.4e-05', 'epoch': '1.485'}
+{'loss': '1.745', 'grad_norm': '7.381', 'learning_rate': '1.368e-05', 'epoch': '1.542'}
+{'loss': '1.703', 'grad_norm': '6.869', 'learning_rate': '1.336e-05', 'epoch': '1.599'}
+{'loss': '1.721', 'grad_norm': '8.802', 'learning_rate': '1.305e-05', 'epoch': '1.656'}
+{'loss': '1.683', 'grad_norm': '19.85', 'learning_rate': '1.273e-05', 'epoch': '1.713'}
+{'loss': '1.732', 'grad_norm': '11.11', 'learning_rate': '1.241e-05', 'epoch': '1.77'}
+{'loss': '1.692', 'grad_norm': '14.49', 'learning_rate': '1.209e-05', 'epoch': '1.827'}
+{'loss': '1.679', 'grad_norm': '7.242', 'learning_rate': '1.178e-05', 'epoch': '1.885'}
+{'loss': '1.658', 'grad_norm': '9.031', 'learning_rate': '1.146e-05', 'epoch': '1.942'}
+{'loss': '1.685', 'grad_norm': '11.4', 'learning_rate': '1.114e-05', 'epoch': '1.999'}
+{'eval_loss': '0.833', 'eval_accuracy': '0.631', 'eval_macro_f1': '0.6354', 'eval_f1_negative': '0.6513', 'eval_f1_neutral': '0.5551', 'eval_f1_positive': '0.6997', 'eval_runtime': '3.83', 'eval_samples_per_second': '783.4', 'eval_steps_per_second': '24.55', 'epoch': '2'}
+EPOCH 2: train loss 0.8673  val loss 0.8330  val macro-F1 0.6354  time 101.7s  peak GPU memory so far 2.13 GiB
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.41s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.41s/it]
+{'loss': '1.583', 'grad_norm': '28.58', 'learning_rate': '1.082e-05', 'epoch': '2.055'}
+{'loss': '1.6', 'grad_norm': '8.844', 'learning_rate': '1.051e-05', 'epoch': '2.112'}
+{'loss': '1.597', 'grad_norm': '13.35', 'learning_rate': '1.019e-05', 'epoch': '2.169'}
+{'loss': '1.573', 'grad_norm': '11.35', 'learning_rate': '9.873e-06', 'epoch': '2.226'}
+{'loss': '1.492', 'grad_norm': '24.2', 'learning_rate': '9.556e-06', 'epoch': '2.283'}
+{'loss': '1.602', 'grad_norm': '17.74', 'learning_rate': '9.239e-06', 'epoch': '2.341'}
+{'loss': '1.592', 'grad_norm': '10.29', 'learning_rate': '8.921e-06', 'epoch': '2.398'}
+{'loss': '1.602', 'grad_norm': '8.541', 'learning_rate': '8.604e-06', 'epoch': '2.455'}
+{'loss': '1.546', 'grad_norm': '16.79', 'learning_rate': '8.287e-06', 'epoch': '2.512'}
+{'loss': '1.573', 'grad_norm': '7.618', 'learning_rate': '7.97e-06', 'epoch': '2.569'}
+{'loss': '1.575', 'grad_norm': '12.33', 'learning_rate': '7.652e-06', 'epoch': '2.626'}
+{'loss': '1.566', 'grad_norm': '19.18', 'learning_rate': '7.335e-06', 'epoch': '2.683'}
+{'loss': '1.496', 'grad_norm': '10.25', 'learning_rate': '7.018e-06', 'epoch': '2.741'}
+{'loss': '1.606', 'grad_norm': '9.939', 'learning_rate': '6.701e-06', 'epoch': '2.798'}
+{'loss': '1.558', 'grad_norm': '19.63', 'learning_rate': '6.383e-06', 'epoch': '2.855'}
+{'loss': '1.559', 'grad_norm': '23.05', 'learning_rate': '6.066e-06', 'epoch': '2.912'}
+{'loss': '1.527', 'grad_norm': '8.304', 'learning_rate': '5.749e-06', 'epoch': '2.969'}
+{'eval_loss': '0.8241', 'eval_accuracy': '0.6317', 'eval_macro_f1': '0.6347', 'eval_f1_negative': '0.6607', 'eval_f1_neutral': '0.5383', 'eval_f1_positive': '0.7052', 'eval_runtime': '4.056', 'eval_samples_per_second': '739.6', 'eval_steps_per_second': '23.18', 'epoch': '3'}
+EPOCH 3: train loss 0.7838  val loss 0.8241  val macro-F1 0.6347  time 108.3s  peak GPU memory so far 2.13 GiB
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.78s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.78s/it]
+{'loss': '1.465', 'grad_norm': '9.253', 'learning_rate': '5.431e-06', 'epoch': '3.025'}
+{'loss': '1.539', 'grad_norm': '24.29', 'learning_rate': '5.114e-06', 'epoch': '3.082'}
+{'loss': '1.453', 'grad_norm': '14.34', 'learning_rate': '4.797e-06', 'epoch': '3.139'}
+{'loss': '1.543', 'grad_norm': '9.099', 'learning_rate': '4.48e-06', 'epoch': '3.197'}
+{'loss': '1.488', 'grad_norm': '12.71', 'learning_rate': '4.162e-06', 'epoch': '3.254'}
+{'loss': '1.448', 'grad_norm': '14.34', 'learning_rate': '3.845e-06', 'epoch': '3.311'}
+{'loss': '1.445', 'grad_norm': '27.03', 'learning_rate': '3.528e-06', 'epoch': '3.368'}
+{'loss': '1.422', 'grad_norm': '17.3', 'learning_rate': '3.211e-06', 'epoch': '3.425'}
+{'loss': '1.5', 'grad_norm': '10.49', 'learning_rate': '2.893e-06', 'epoch': '3.482'}
+{'loss': '1.457', 'grad_norm': '10.37', 'learning_rate': '2.576e-06', 'epoch': '3.539'}
+{'loss': '1.455', 'grad_norm': '21.53', 'learning_rate': '2.259e-06', 'epoch': '3.597'}
+{'loss': '1.452', 'grad_norm': '9.069', 'learning_rate': '1.942e-06', 'epoch': '3.654'}
+{'loss': '1.459', 'grad_norm': '11.85', 'learning_rate': '1.624e-06', 'epoch': '3.711'}
+{'loss': '1.467', 'grad_norm': '18.67', 'learning_rate': '1.307e-06', 'epoch': '3.768'}
+{'loss': '1.488', 'grad_norm': '17.79', 'learning_rate': '9.898e-07', 'epoch': '3.825'}
+{'loss': '1.42', 'grad_norm': '16.05', 'learning_rate': '6.726e-07', 'epoch': '3.882'}
+{'loss': '1.481', 'grad_norm': '26.09', 'learning_rate': '3.553e-07', 'epoch': '3.939'}
+{'loss': '1.441', 'grad_norm': '26.65', 'learning_rate': '3.807e-08', 'epoch': '3.997'}
+{'eval_loss': '0.827', 'eval_accuracy': '0.6377', 'eval_macro_f1': '0.6413', 'eval_f1_negative': '0.663', 'eval_f1_neutral': '0.5535', 'eval_f1_positive': '0.7075', 'eval_runtime': '3.95', 'eval_samples_per_second': '759.5', 'eval_steps_per_second': '23.8', 'epoch': '4'}
+EPOCH 4: train loss 0.7340  val loss 0.8270  val macro-F1 0.6413  time 107.0s  peak GPU memory so far 2.13 GiB
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.20s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.20s/it]
+{'train_runtime': '433.5', 'train_samples_per_second': '129.2', 'train_steps_per_second': '4.041', 'train_loss': '1.698', 'epoch': '4'}
 
-training finished in 7.0 min | peak GPU memory: 2.11 GiB allocated, 2.22 GiB reserved
-Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it]
-best model on validation: {'accuracy': 0.6443, 'macro_f1': 0.6486, 'f1_negative': 0.6625, 'f1_neutral': 0.5748, 'f1_positive': 0.7086}
-saved model to models\muril-base-cased_seed42, 1067 validation errors, and the summary JSON
+training finished in 7.2 min | peak GPU memory: 2.13 GiB allocated, 2.22 GiB reserved
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.07s/it]Writing model shards: 100%|██████████| 1/1 [00:01<00:00,  1.07s/it]
+best model on validation: {'accuracy': 0.6377, 'macro_f1': 0.6413, 'f1_negative': 0.663, 'f1_neutral': 0.5535, 'f1_positive': 0.7075}
+saved model to models\muril-base-cased_seed42, 1087 validation errors, and the summary JSON

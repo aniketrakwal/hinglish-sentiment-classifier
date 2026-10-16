@@ -1,0 +1,48 @@
+{
+  "model": "google/muril-base-cased",
+  "seed": 43,
+  "max_length": 64,
+  "total_params": 237558531,
+  "trainable_params": 86043651,
+  "embedding_params": 151514880,
+  "peak_gpu_allocated_gib": 2.134,
+  "peak_gpu_reserved_gib": 2.225,
+  "train_minutes": 7.2,
+  "best_val": {
+    "accuracy": 0.642,
+    "macro_f1": 0.6456952811069806,
+    "f1_negative": 0.6662965019433648,
+    "f1_neutral": 0.56289592760181,
+    "f1_positive": 0.7078934137757668
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 1.010300131405101,
+      "val_loss": 0.8994653224945068,
+      "val_macro_f1": 0.5695709303733733,
+      "epoch_time_s": 104.3
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8473779466417101,
+      "val_loss": 0.8279991149902344,
+      "val_macro_f1": 0.6352816823565807,
+      "epoch_time_s": 105.7
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.7703801502900965,
+      "val_loss": 0.8467990159988403,
+      "val_macro_f1": 0.6227543788586867,
+      "epoch_time_s": 111.1
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.7187996843126085,
+      "val_loss": 0.825896143913269,
+      "val_macro_f1": 0.6456952811069806,
+      "epoch_time_s": 106.4
+    }
+  ]
+}

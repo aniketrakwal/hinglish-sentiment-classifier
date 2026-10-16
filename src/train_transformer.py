@@ -15,6 +15,7 @@ os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"   # silence a harmless Windo
 
 import argparse
 import json
+import shutil
 import sys
 import time
 
@@ -32,7 +33,10 @@ from preprocess import clean_text
 LABELS = ["negative", "neutral", "positive"]
 LABEL2ID = {label: i for i, label in enumerate(LABELS)}
 ID2LABEL = {i: label for label, i in LABEL2ID.items()}
-DEFAULT_MAX_LENGTH = 48   # from results/tokenizer_report.txt: smallest length covering >= 99% of tweets for all 3 tokenizers
+# results/tokenizer_report.txt: 48 is the smallest length covering >= 99% of tweets for all 3 tokenizers; we use 64
+# (99.8% coverage). With dynamic padding a longer limit costs almost nothing, because batches are
+# only padded to their own longest tweet.
+DEFAULT_MAX_LENGTH = 64
 
 
 class TweetDataset(Dataset):
@@ -210,6 +214,8 @@ def main():
     # ---- Best model (already reloaded by load_best_model_at_end): save it and score validation
     trainer.save_model(save_dir)
     tokenizer.save_pretrained(save_dir)
+    # The per-epoch checkpoints (about 1 GB each) are no longer needed: the best model is saved above
+    shutil.rmtree(os.path.join(save_dir, "checkpoints"), ignore_errors=True)
     output = trainer.predict(val_ds)
     probs = torch.softmax(torch.tensor(output.predictions), dim=1).numpy()
     preds = probs.argmax(axis=1)

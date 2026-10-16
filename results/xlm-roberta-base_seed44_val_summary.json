@@ -1,0 +1,48 @@
+{
+  "model": "xlm-roberta-base",
+  "seed": 44,
+  "max_length": 64,
+  "total_params": 278045955,
+  "trainable_params": 86044419,
+  "embedding_params": 192001536,
+  "peak_gpu_allocated_gib": 2.285,
+  "peak_gpu_reserved_gib": 2.375,
+  "train_minutes": 7.1,
+  "best_val": {
+    "accuracy": 0.6413333333333333,
+    "macro_f1": 0.6434650604733387,
+    "f1_negative": 0.6645264847512039,
+    "f1_neutral": 0.5577013659915214,
+    "f1_positive": 0.7081673306772909
+  },
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.9481292814366957,
+      "val_loss": 0.8903543949127197,
+      "val_macro_f1": 0.6127123645821707,
+      "epoch_time_s": 102.7
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.8148113801744251,
+      "val_loss": 0.8361755609512329,
+      "val_macro_f1": 0.6215054736415421,
+      "epoch_time_s": 105.7
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.732640641156365,
+      "val_loss": 0.83121258020401,
+      "val_macro_f1": 0.640581636687257,
+      "epoch_time_s": 106.1
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.678326981862386,
+      "val_loss": 0.8465725779533386,
+      "val_macro_f1": 0.6434650604733387,
+      "epoch_time_s": 106.4
+    }
+  ]
+}
