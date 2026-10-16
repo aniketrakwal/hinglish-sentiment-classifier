@@ -7,5 +7,11 @@ jupyter
 emoji
 pyyaml
 pytest
-# torch is the CPU build: pip install torch --index-url https://download.pytorch.org/whl/cpu
+# torch: for the BiLSTM the CPU build is enough (pip install torch --index-url https://download.pytorch.org/whl/cpu).
+# For transformer fine-tuning on an NVIDIA GPU install the CUDA build instead:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu126
 torch
+transformers==5.20.0
+accelerate==1.15.0
+sentencepiece==0.2.2
+protobuf==7.36.2

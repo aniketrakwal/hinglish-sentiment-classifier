@@ -1,0 +1,53 @@
+Train tweets: 14000; words per tweet (after clean_text): mean 20.3
+
+=== Comparison (lengths include the 2 special tokens) ===
+                        google/muril-base-cased l3cube-pune/hing-roberta xlm-roberta-base
+parameters (M)                              238                      278              278
+vocab size                               197258                   250002           250002
+tokens/tweet mean                          29.4                     31.2             31.2
+median                                       30                       33               33
+p95                                          41                       43               43
+p99                                          46                       48               48
+max                                          77                       94               94
+pieces per word                            1.35                     1.44             1.44
+% truncated at 64                          0.02                     0.16             0.16
+% truncated at 128                         0.00                     0.00             0.00
+unknown tokens                             7679                      206              206
+tweets with >=1 unknown                    2704                      140              140
+
+=== Coverage of candidate max_length values (share of tweets that fit, %) ===
+     google/muril-base-cased  l3cube-pune/hing-roberta  xlm-roberta-base
+32                     62.04                     49.74             49.74
+48                     99.48                     99.00             99.00
+64                     99.98                     99.84             99.84
+96                    100.00                    100.00            100.00
+128                   100.00                    100.00            100.00
+
+Recommended max_length for all three models: 48 (smallest candidate with >= 99% coverage for every tokenizer)
+
+=== How each tokenizer splits some text ===
+
+TEXT: nahi nhi nai bahut bohot bahot
+  google/muril-base-cased: ['nahi', 'n', '##hi', 'nai', 'bahut', 'bo', '##hot', 'bah', '##ot']
+  l3cube-pune/hing-roberta: ['▁nahi', '▁nhi', '▁na', 'i', '▁bahut', '▁bo', 'hot', '▁baho', 't']
+  xlm-roberta-base: ['▁nahi', '▁nhi', '▁na', 'i', '▁bahut', '▁bo', 'hot', '▁baho', 't']
+
+TEXT: @user congratulations bhai 🎉 🎉
+  google/muril-base-cased: ['@', 'user', 'congratulations', 'bhai', '[UNK]', '[UNK]']
+  l3cube-pune/hing-roberta: ['▁@', 'user', '▁congratula', 'tions', '▁bhai', '▁', '🎉', '▁', '🎉']
+  xlm-roberta-base: ['▁@', 'user', '▁congratula', 'tions', '▁bhai', '▁', '🎉', '▁', '🎉']
+
+TEXT: @user मेरे #चम्पारण का #शेर 👉 🌹 🌹 radhamohansingh congratulations bhut bhut badhai aur subhkamnaye … http
+  google/muril-base-cased: ['@', 'user', 'मेरे', '#', 'चम्पारण', 'का', '#', 'शेर', '[UNK]', '[UNK]', '[UNK]', 'radha', '##mohan', '##singh', 'congratulations', 'bhu', '##t', 'bhu', '##t', 'badhai', 'aur', 'sub', '##h', '##kam', '##nay', '##e', '…', 'http']
+  l3cube-pune/hing-roberta: ['▁@', 'user', '▁मेरे', '▁#', 'च', 'म्', 'पा', 'रण', '▁का', '▁#', 'श', 'ेर', '▁', '👉', '▁', '🌹', '▁', '🌹', '▁', 'radh', 'amo', 'han', 'singh', '▁congratula', 'tions', '▁bhu', 't', '▁bhu', 't', '▁bad', 'hai', '▁aur', '▁sub', 'h', 'kam', 'na', 'ye', '▁...', '▁http']
+  xlm-roberta-base: ['▁@', 'user', '▁मेरे', '▁#', 'च', 'म्', 'पा', 'रण', '▁का', '▁#', 'श', 'ेर', '▁', '👉', '▁', '🌹', '▁', '🌹', '▁', 'radh', 'amo', 'han', 'singh', '▁congratula', 'tions', '▁bhu', 't', '▁bhu', 't', '▁bad', 'hai', '▁aur', '▁sub', 'h', 'kam', 'na', 'ye', '▁...', '▁http']
+
+TEXT: @user jab aap usa ki jholi me hogey to iran q aap ko qubool hoga irani making difficulties for usa in middle easts
+  google/muril-base-cased: ['@', 'user', 'jab', 'aap', 'us', '##a', 'ki', 'j', '##holi', 'me', 'ho', '##ge', '##y', 'to', 'iran', 'q', 'aap', 'ko', 'q', '##ub', '##ool', 'hoga', 'irani', 'making', 'difficulties', 'for', 'us', '##a', 'in', 'middle', 'east', '##s']
+  l3cube-pune/hing-roberta: ['▁@', 'user', '▁jab', '▁aap', '▁usa', '▁ki', '▁j', 'holi', '▁me', '▁hoge', 'y', '▁to', '▁ir', 'an', '▁q', '▁aap', '▁ko', '▁qu', 'bool', '▁hoga', '▁', 'irani', '▁making', '▁difficult', 'ies', '▁for', '▁usa', '▁in', '▁middle', '▁e', 'ast', 's']
+  xlm-roberta-base: ['▁@', 'user', '▁jab', '▁aap', '▁usa', '▁ki', '▁j', 'holi', '▁me', '▁hoge', 'y', '▁to', '▁ir', 'an', '▁q', '▁aap', '▁ko', '▁qu', 'bool', '▁hoga', '▁', 'irani', '▁making', '▁difficult', 'ies', '▁for', '▁usa', '▁in', '▁middle', '▁e', 'ast', 's']
+
+TEXT: @user kutte to sirf tere buddhe ko hi puchenge ! and you have gutts to call pc plastic when liter … http
+  google/muril-base-cased: ['@', 'user', 'ku', '##tte', 'to', 'sirf', 'tere', 'b', '##udd', '##he', 'ko', 'hi', 'puche', '##nge', '!', 'and', 'you', 'have', 'gut', '##ts', 'to', 'call', 'pc', 'plastic', 'when', 'liter', '…', 'http']
+  l3cube-pune/hing-roberta: ['▁@', 'user', '▁ku', 'tte', '▁to', '▁si', 'rf', '▁tere', '▁buddh', 'e', '▁ko', '▁hi', '▁pu', 'chen', 'ge', '▁!', '▁and', '▁you', '▁have', '▁gutt', 's', '▁to', '▁call', '▁pc', '▁plastic', '▁when', '▁liter', '▁...', '▁http']
+  xlm-roberta-base: ['▁@', 'user', '▁ku', 'tte', '▁to', '▁si', 'rf', '▁tere', '▁buddh', 'e', '▁ko', '▁hi', '▁pu', 'chen', 'ge', '▁!', '▁and', '▁you', '▁have', '▁gutt', 's', '▁to', '▁call', '▁pc', '▁plastic', '▁when', '▁liter', '▁...', '▁http']
