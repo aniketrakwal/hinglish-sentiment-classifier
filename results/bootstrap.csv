@@ -1,0 +1,20 @@
+kind,split,model,model_b,point_estimate,mean_bootstrap,ci_low,ci_high,excludes_zero
+ci,val,TF-IDF + LogReg,,0.6226,0.6224,0.6059,0.6395,
+ci,val,BiLSTM,,0.5870,0.5867,0.5725,0.6005,
+ci,val,LSTM (uni),,0.5850,0.5848,0.5708,0.5982,
+ci,val,MuRIL,,0.6447,0.6444,0.6292,0.6598,
+ci,val,XLM-R,,0.6411,0.6412,0.6262,0.6556,
+ci,val,HingRoBERTa (full),,0.6796,0.6792,0.6647,0.6936,
+ci,val,HingRoBERTa LoRA r=8,,0.6759,0.6757,0.6609,0.6907,
+ci,val,HingRoBERTa LoRA r=16,,0.6774,0.6772,0.6623,0.6917,
+diff,val,HingRoBERTa (full),TF-IDF + LogReg,0.0569,0.0568,0.0413,0.0725,True
+diff,val,HingRoBERTa (full),MuRIL,0.0349,0.0348,0.0221,0.0478,True
+diff,val,HingRoBERTa (full),XLM-R,0.0385,0.0380,0.0259,0.0500,True
+diff,val,HingRoBERTa (full),HingRoBERTa LoRA r=16,0.0022,0.0020,-0.0054,0.0095,False
+diff,val,MuRIL,XLM-R,0.0036,0.0032,-0.0084,0.0145,False
+ci,test,TF-IDF + LogReg,,0.6849,0.6852,0.6681,0.7013,
+ci,test,BiLSTM,,0.6318,0.6320,0.6175,0.6453,
+ci,test,HingRoBERTa (full),,0.7436,0.7440,0.7304,0.7585,
+ci,test,HingRoBERTa LoRA r=16,,0.7515,0.7519,0.7379,0.7659,
+diff,test,HingRoBERTa (full),TF-IDF + LogReg,0.0587,0.0588,0.0420,0.0759,True
+diff,test,HingRoBERTa (full),HingRoBERTa LoRA r=16,-0.0079,-0.0079,-0.0148,-0.0004,True
