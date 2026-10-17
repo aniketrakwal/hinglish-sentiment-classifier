@@ -1,0 +1,164 @@
+python: D:\hinglish\venv\Scripts\python.exe
+torch: 2.14.1+cu126 | CUDA available: True
+GPU: NVIDIA GeForce RTX 3050 Laptop GPU | total memory 4.00 GiB
+train 14000 tweets, val 3000 tweets, max_length 64
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 22493.55it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: l3cube-pune/hing-roberta
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.layer_norm.bias    | UNEXPECTED | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+parameters: total 278,933,766 | trainable 887,811 (0.32% of total)
+trainable parameter groups (summed over the layers):
+  base_model.model.classifier.modules_to_save.default.dense.weight: 589,824
+  base_model.model.classifier.modules_to_save.default.dense.bias: 768
+  base_model.model.classifier.modules_to_save.default.out_proj.weight: 2,304
+  base_model.model.classifier.modules_to_save.default.out_proj.bias: 3
+  base_model.model.roberta.encoder.layer.N.attention.self.query.lora_A.default.weight: 73,728
+  base_model.model.roberta.encoder.layer.N.attention.self.query.lora_B.default.weight: 73,728
+  base_model.model.roberta.encoder.layer.N.attention.self.value.lora_A.default.weight: 73,728
+  base_model.model.roberta.encoder.layer.N.attention.self.value.lora_B.default.weight: 73,728
+classification head trainable: True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{'loss': '2.226', 'grad_norm': '4.639', 'learning_rate': '1.825e-05', 'epoch': '0.05714'}
+{'loss': '2.175', 'grad_norm': '2.506', 'learning_rate': '3.726e-05', 'epoch': '0.1143'}
+{'loss': '2.095', 'grad_norm': '3.831', 'learning_rate': '5.627e-05', 'epoch': '0.1714'}
+{'loss': '1.923', 'grad_norm': '4.342', 'learning_rate': '7.529e-05', 'epoch': '0.2286'}
+{'loss': '1.635', 'grad_norm': '4.642', 'learning_rate': '9.43e-05', 'epoch': '0.2857'}
+{'loss': '1.679', 'grad_norm': '5.377', 'learning_rate': '0.0001133', 'epoch': '0.3429'}
+{'loss': '1.625', 'grad_norm': '5.283', 'learning_rate': '0.0001323', 'epoch': '0.4'}
+{'loss': '1.581', 'grad_norm': '3.748', 'learning_rate': '0.0001513', 'epoch': '0.4571'}
+{'loss': '1.57', 'grad_norm': '3.236', 'learning_rate': '0.0001703', 'epoch': '0.5143'}
+{'loss': '1.554', 'grad_norm': '6.398', 'learning_rate': '0.0001894', 'epoch': '0.5714'}
+{'loss': '1.521', 'grad_norm': '3.316', 'learning_rate': '0.0001991', 'epoch': '0.6286'}
+{'loss': '1.558', 'grad_norm': '3.901', 'learning_rate': '0.000197', 'epoch': '0.6857'}
+{'loss': '1.527', 'grad_norm': '5.033', 'learning_rate': '0.0001948', 'epoch': '0.7429'}
+{'loss': '1.584', 'grad_norm': '4.966', 'learning_rate': '0.0001927', 'epoch': '0.8'}
+{'loss': '1.531', 'grad_norm': '3.991', 'learning_rate': '0.0001906', 'epoch': '0.8571'}
+{'loss': '1.498', 'grad_norm': '6.031', 'learning_rate': '0.0001885', 'epoch': '0.9143'}
+{'loss': '1.527', 'grad_norm': '5.538', 'learning_rate': '0.0001864', 'epoch': '0.9714'}
+{'eval_loss': '0.7905', 'eval_accuracy': '0.6583', 'eval_macro_f1': '0.6533', 'eval_f1_negative': '0.7035', 'eval_f1_neutral': '0.5224', 'eval_f1_positive': '0.7338', 'eval_runtime': '4.52', 'eval_samples_per_second': '663.7', 'eval_steps_per_second': '20.8', 'epoch': '1'}
+EPOCH 1: train loss 0.8473  val loss 0.7905  val macro-F1 0.6533  time 99.1s  peak GPU memory so far 1.17 GiB
+{'loss': '1.526', 'grad_norm': '2.459', 'learning_rate': '0.0001843', 'epoch': '1.027'}
+{'loss': '1.526', 'grad_norm': '2.707', 'learning_rate': '0.0001822', 'epoch': '1.085'}
+{'loss': '1.508', 'grad_norm': '3.981', 'learning_rate': '0.00018', 'epoch': '1.142'}
+{'loss': '1.568', 'grad_norm': '3.489', 'learning_rate': '0.0001779', 'epoch': '1.199'}
+{'loss': '1.542', 'grad_norm': '2.816', 'learning_rate': '0.0001758', 'epoch': '1.256'}
+{'loss': '1.447', 'grad_norm': '4.603', 'learning_rate': '0.0001737', 'epoch': '1.313'}
+{'loss': '1.439', 'grad_norm': '3.418', 'learning_rate': '0.0001716', 'epoch': '1.37'}
+{'loss': '1.471', 'grad_norm': '4.381', 'learning_rate': '0.0001695', 'epoch': '1.427'}
+{'loss': '1.556', 'grad_norm': '2.636', 'learning_rate': '0.0001674', 'epoch': '1.485'}
+{'loss': '1.47', 'grad_norm': '4.285', 'learning_rate': '0.0001652', 'epoch': '1.542'}
+{'loss': '1.393', 'grad_norm': '2.65', 'learning_rate': '0.0001631', 'epoch': '1.599'}
+{'loss': '1.558', 'grad_norm': '6.639', 'learning_rate': '0.000161', 'epoch': '1.656'}
+{'loss': '1.526', 'grad_norm': '3.215', 'learning_rate': '0.0001589', 'epoch': '1.713'}
+{'loss': '1.58', 'grad_norm': '2.937', 'learning_rate': '0.0001568', 'epoch': '1.77'}
+{'loss': '1.513', 'grad_norm': '2.497', 'learning_rate': '0.0001547', 'epoch': '1.827'}
+{'loss': '1.437', 'grad_norm': '6.358', 'learning_rate': '0.0001526', 'epoch': '1.885'}
+{'loss': '1.533', 'grad_norm': '3.933', 'learning_rate': '0.0001504', 'epoch': '1.942'}
+{'loss': '1.484', 'grad_norm': '4.237', 'learning_rate': '0.0001483', 'epoch': '1.999'}
+{'eval_loss': '0.7432', 'eval_accuracy': '0.6643', 'eval_macro_f1': '0.6684', 'eval_f1_negative': '0.6941', 'eval_f1_neutral': '0.5908', 'eval_f1_positive': '0.7203', 'eval_runtime': '4.478', 'eval_samples_per_second': '669.9', 'eval_steps_per_second': '20.99', 'epoch': '2'}
+EPOCH 2: train loss 0.7522  val loss 0.7432  val macro-F1 0.6684  time 100.9s  peak GPU memory so far 1.17 GiB
+{'loss': '1.382', 'grad_norm': '7.602', 'learning_rate': '0.0001462', 'epoch': '2.055'}
+{'loss': '1.433', 'grad_norm': '3.151', 'learning_rate': '0.0001441', 'epoch': '2.112'}
+{'loss': '1.419', 'grad_norm': '2.794', 'learning_rate': '0.000142', 'epoch': '2.169'}
+{'loss': '1.459', 'grad_norm': '3.678', 'learning_rate': '0.0001399', 'epoch': '2.226'}
+{'loss': '1.438', 'grad_norm': '2.943', 'learning_rate': '0.0001378', 'epoch': '2.283'}
+{'loss': '1.483', 'grad_norm': '3.358', 'learning_rate': '0.0001356', 'epoch': '2.341'}
+{'loss': '1.512', 'grad_norm': '3.183', 'learning_rate': '0.0001335', 'epoch': '2.398'}
+{'loss': '1.414', 'grad_norm': '2.423', 'learning_rate': '0.0001314', 'epoch': '2.455'}
+{'loss': '1.434', 'grad_norm': '5.806', 'learning_rate': '0.0001293', 'epoch': '2.512'}
+{'loss': '1.417', 'grad_norm': '3.072', 'learning_rate': '0.0001272', 'epoch': '2.569'}
+{'loss': '1.377', 'grad_norm': '8.261', 'learning_rate': '0.0001251', 'epoch': '2.626'}
+{'loss': '1.486', 'grad_norm': '4.585', 'learning_rate': '0.000123', 'epoch': '2.683'}
+{'loss': '1.519', 'grad_norm': '3.148', 'learning_rate': '0.0001208', 'epoch': '2.741'}
+{'loss': '1.474', 'grad_norm': '8.23', 'learning_rate': '0.0001187', 'epoch': '2.798'}
+{'loss': '1.383', 'grad_norm': '3.969', 'learning_rate': '0.0001166', 'epoch': '2.855'}
+{'loss': '1.442', 'grad_norm': '3.401', 'learning_rate': '0.0001145', 'epoch': '2.912'}
+{'loss': '1.443', 'grad_norm': '4.284', 'learning_rate': '0.0001124', 'epoch': '2.969'}
+{'eval_loss': '0.7423', 'eval_accuracy': '0.6693', 'eval_macro_f1': '0.6739', 'eval_f1_negative': '0.7047', 'eval_f1_neutral': '0.5969', 'eval_f1_positive': '0.7202', 'eval_runtime': '4.499', 'eval_samples_per_second': '666.8', 'eval_steps_per_second': '20.89', 'epoch': '3'}
+EPOCH 3: train loss 0.7211  val loss 0.7423  val macro-F1 0.6739  time 103.4s  peak GPU memory so far 1.17 GiB
+{'loss': '1.396', 'grad_norm': '4.646', 'learning_rate': '0.0001103', 'epoch': '3.025'}
+{'loss': '1.349', 'grad_norm': '2.576', 'learning_rate': '0.0001082', 'epoch': '3.082'}
+{'loss': '1.402', 'grad_norm': '2.52', 'learning_rate': '0.000106', 'epoch': '3.139'}
+{'loss': '1.438', 'grad_norm': '3.601', 'learning_rate': '0.0001039', 'epoch': '3.197'}
+{'loss': '1.385', 'grad_norm': '3.522', 'learning_rate': '0.0001018', 'epoch': '3.254'}
+{'loss': '1.383', 'grad_norm': '2.732', 'learning_rate': '9.97e-05', 'epoch': '3.311'}
+{'loss': '1.494', 'grad_norm': '3.832', 'learning_rate': '9.759e-05', 'epoch': '3.368'}
+{'loss': '1.458', 'grad_norm': '2.796', 'learning_rate': '9.548e-05', 'epoch': '3.425'}
+{'loss': '1.452', 'grad_norm': '3.553', 'learning_rate': '9.336e-05', 'epoch': '3.482'}
+{'loss': '1.346', 'grad_norm': '3.522', 'learning_rate': '9.125e-05', 'epoch': '3.539'}
+{'loss': '1.38', 'grad_norm': '4.162', 'learning_rate': '8.913e-05', 'epoch': '3.597'}
+{'loss': '1.444', 'grad_norm': '6.571', 'learning_rate': '8.702e-05', 'epoch': '3.654'}
+{'loss': '1.442', 'grad_norm': '2.994', 'learning_rate': '8.49e-05', 'epoch': '3.711'}
+{'loss': '1.493', 'grad_norm': '4.376', 'learning_rate': '8.279e-05', 'epoch': '3.768'}
+{'loss': '1.395', 'grad_norm': '3.029', 'learning_rate': '8.068e-05', 'epoch': '3.825'}
+{'loss': '1.455', 'grad_norm': '4.411', 'learning_rate': '7.856e-05', 'epoch': '3.882'}
+{'loss': '1.339', 'grad_norm': '4.653', 'learning_rate': '7.645e-05', 'epoch': '3.939'}
+{'loss': '1.405', 'grad_norm': '4.204', 'learning_rate': '7.433e-05', 'epoch': '3.997'}
+{'eval_loss': '0.7604', 'eval_accuracy': '0.674', 'eval_macro_f1': '0.6739', 'eval_f1_negative': '0.7222', 'eval_f1_neutral': '0.5679', 'eval_f1_positive': '0.7318', 'eval_runtime': '4.489', 'eval_samples_per_second': '668.3', 'eval_steps_per_second': '20.94', 'epoch': '4'}
+EPOCH 4: train loss 0.7071  val loss 0.7604  val macro-F1 0.6739  time 102.0s  peak GPU memory so far 1.17 GiB
+{'loss': '1.302', 'grad_norm': '3.458', 'learning_rate': '7.222e-05', 'epoch': '4.053'}
+{'loss': '1.364', 'grad_norm': '6.047', 'learning_rate': '7.011e-05', 'epoch': '4.11'}
+{'loss': '1.385', 'grad_norm': '3.856', 'learning_rate': '6.799e-05', 'epoch': '4.167'}
+{'loss': '1.312', 'grad_norm': '4.379', 'learning_rate': '6.588e-05', 'epoch': '4.224'}
+{'loss': '1.461', 'grad_norm': '3.938', 'learning_rate': '6.376e-05', 'epoch': '4.281'}
+{'loss': '1.403', 'grad_norm': '3.681', 'learning_rate': '6.165e-05', 'epoch': '4.338'}
+{'loss': '1.436', 'grad_norm': '3.027', 'learning_rate': '5.953e-05', 'epoch': '4.395'}
+{'loss': '1.328', 'grad_norm': '4.743', 'learning_rate': '5.742e-05', 'epoch': '4.453'}
+{'loss': '1.413', 'grad_norm': '4.174', 'learning_rate': '5.531e-05', 'epoch': '4.51'}
+{'loss': '1.318', 'grad_norm': '4.284', 'learning_rate': '5.319e-05', 'epoch': '4.567'}
+{'loss': '1.394', 'grad_norm': '3.454', 'learning_rate': '5.108e-05', 'epoch': '4.624'}
+{'loss': '1.356', 'grad_norm': '5.146', 'learning_rate': '4.896e-05', 'epoch': '4.681'}
+{'loss': '1.425', 'grad_norm': '4.178', 'learning_rate': '4.685e-05', 'epoch': '4.738'}
+{'loss': '1.429', 'grad_norm': '3.809', 'learning_rate': '4.474e-05', 'epoch': '4.795'}
+{'loss': '1.323', 'grad_norm': '3.273', 'learning_rate': '4.262e-05', 'epoch': '4.853'}
+{'loss': '1.463', 'grad_norm': '4.287', 'learning_rate': '4.051e-05', 'epoch': '4.91'}
+{'loss': '1.394', 'grad_norm': '4.479', 'learning_rate': '3.839e-05', 'epoch': '4.967'}
+{'eval_loss': '0.747', 'eval_accuracy': '0.6707', 'eval_macro_f1': '0.6746', 'eval_f1_negative': '0.7051', 'eval_f1_neutral': '0.5947', 'eval_f1_positive': '0.7239', 'eval_runtime': '4.494', 'eval_samples_per_second': '667.5', 'eval_steps_per_second': '20.92', 'epoch': '5'}
+EPOCH 5: train loss 0.6914  val loss 0.7470  val macro-F1 0.6746  time 101.4s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\other.py:1508: UserWarning: Unable to fetch remote file due to the following error timed out - silently ignoring the lookup for the file config.json in l3cube-pune/hing-roberta.
+  warnings.warn(
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '1.416', 'grad_norm': '3.561', 'learning_rate': '3.628e-05', 'epoch': '5.023'}
+{'loss': '1.299', 'grad_norm': '4.323', 'learning_rate': '3.416e-05', 'epoch': '5.08'}
+{'loss': '1.26', 'grad_norm': '4.424', 'learning_rate': '3.205e-05', 'epoch': '5.137'}
+{'loss': '1.332', 'grad_norm': '5.243', 'learning_rate': '2.994e-05', 'epoch': '5.194'}
+{'loss': '1.408', 'grad_norm': '4.365', 'learning_rate': '2.782e-05', 'epoch': '5.251'}
+{'loss': '1.369', 'grad_norm': '3.423', 'learning_rate': '2.571e-05', 'epoch': '5.309'}
+{'loss': '1.411', 'grad_norm': '2.827', 'learning_rate': '2.359e-05', 'epoch': '5.366'}
+{'loss': '1.303', 'grad_norm': '3.62', 'learning_rate': '2.148e-05', 'epoch': '5.423'}
+{'loss': '1.441', 'grad_norm': '4.716', 'learning_rate': '1.937e-05', 'epoch': '5.48'}
+{'loss': '1.516', 'grad_norm': '4.684', 'learning_rate': '1.725e-05', 'epoch': '5.537'}
+{'loss': '1.363', 'grad_norm': '4.318', 'learning_rate': '1.514e-05', 'epoch': '5.594'}
+{'loss': '1.331', 'grad_norm': '3.777', 'learning_rate': '1.302e-05', 'epoch': '5.651'}
+{'loss': '1.358', 'grad_norm': '4.105', 'learning_rate': '1.091e-05', 'epoch': '5.709'}
+{'loss': '1.302', 'grad_norm': '3.328', 'learning_rate': '8.795e-06', 'epoch': '5.766'}
+{'loss': '1.41', 'grad_norm': '3.701', 'learning_rate': '6.681e-06', 'epoch': '5.823'}
+{'loss': '1.39', 'grad_norm': '3.314', 'learning_rate': '4.567e-06', 'epoch': '5.88'}
+{'loss': '1.305', 'grad_norm': '6.661', 'learning_rate': '2.452e-06', 'epoch': '5.937'}
+{'loss': '1.387', 'grad_norm': '3.297', 'learning_rate': '3.383e-07', 'epoch': '5.994'}
+{'eval_loss': '0.7516', 'eval_accuracy': '0.6717', 'eval_macro_f1': '0.6747', 'eval_f1_negative': '0.7118', 'eval_f1_neutral': '0.5886', 'eval_f1_positive': '0.7237', 'eval_runtime': '4.514', 'eval_samples_per_second': '664.6', 'eval_steps_per_second': '20.82', 'epoch': '6'}
+EPOCH 6: train loss 0.6833  val loss 0.7516  val macro-F1 0.6747  time 95.8s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\other.py:1508: UserWarning: Unable to fetch remote file due to the following error timed out - silently ignoring the lookup for the file config.json in l3cube-pune/hing-roberta.
+  warnings.warn(
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'train_runtime': '686.6', 'train_samples_per_second': '122.3', 'train_steps_per_second': '3.827', 'train_loss': '1.466', 'epoch': '6'}
+
+training finished in 11.4 min | peak GPU memory: 1.17 GiB allocated, 1.21 GiB reserved
+best model on validation: {'accuracy': 0.6717, 'macro_f1': 0.6747, 'f1_negative': 0.7118, 'f1_neutral': 0.5886, 'f1_positive': 0.7237}
+saved weight files: 3.4 MB (adapter + classifier)
+saved model to models\hing-roberta_lora_r8_lr0.0002_seed44, 985 validation errors, and the summary JSON

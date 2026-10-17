@@ -1,0 +1,4 @@
+setup,val_macro_f1,val_macro_f1_mean,f1_negative,f1_neutral,f1_positive,total_params,trainable_params,trainable_percent,sec_per_epoch,peak_gpu_gib,saved_weights_mb
+full fine-tune,0.6796 ± 0.0028,0.6796,0.723,0.5909,0.7249,278045955,86044419,30.95,108.1,2.29,1060.7
+LoRA r=8,0.6759 ± 0.0014,0.6759,0.7111,0.5921,0.7245,278933766,887811,0.32,141.8,1.17,3.4
+LoRA r=16,0.6774 ± 0.0035,0.6774,0.7128,0.595,0.7244,279228678,1182723,0.42,99.3,1.17,4.5

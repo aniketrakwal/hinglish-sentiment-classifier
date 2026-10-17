@@ -1,0 +1,27 @@
+
+[0.0 min elapsed] starting hing-roberta_lora_r8_lr0.0002_seed42
+  done in 23.3 min | best val macro-F1 0.6774 | 223 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 3.4 MB
+
+[23.3 min elapsed] starting hing-roberta_lora_r8_lr0.0005_seed42
+  done in 70.6 min | best val macro-F1 0.6770 | 699 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 3.4 MB
+learning-rate check: lr 0.0002 -> val macro-F1 0.6774
+learning-rate check: lr 0.0005 -> val macro-F1 0.6770
+chosen learning rate: 0.0002
+[93.9 min elapsed] hing-roberta_lora_r8_lr0.0002_seed42: results exist, skipping
+
+[93.9 min elapsed] starting hing-roberta_lora_r16_lr0.0002_seed42
+  done in 11.1 min | best val macro-F1 0.6759 | 102 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 4.5 MB
+
+[104.9 min elapsed] starting hing-roberta_lora_r8_lr0.0002_seed43
+  done in 10.8 min | best val macro-F1 0.6755 | 102 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 3.4 MB
+
+[115.7 min elapsed] starting hing-roberta_lora_r16_lr0.0002_seed43
+  done in 10.8 min | best val macro-F1 0.6749 | 101 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 4.5 MB
+
+[126.5 min elapsed] starting hing-roberta_lora_r8_lr0.0002_seed44
+  done in 12.6 min | best val macro-F1 0.6747 | 100 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 3.4 MB
+
+[139.0 min elapsed] starting hing-roberta_lora_r16_lr0.0002_seed44
+FAILED hing-roberta_lora_r16_lr0.0002_seed44 (exit code 1) after 10.5 min, see results\hing-roberta_lora_r16_lr0.0002_seed44_train_log.txt
+
+Finished in 149.5 min. Failed: ['hing-roberta_lora_r16_lr0.0002_seed44']

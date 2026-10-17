@@ -1,0 +1,4 @@
+model,seed,test_accuracy,test_macro_f1,test_f1_negative,test_f1_neutral,test_f1_positive
+hing-roberta LoRA r=16,42,0.7473,0.7514,0.7794,0.6783,0.7965
+hing-roberta LoRA r=16,43,0.7467,0.7510,0.7844,0.6789,0.7897
+hing-roberta LoRA r=16,44,0.7487,0.7522,0.7778,0.6779,0.8008

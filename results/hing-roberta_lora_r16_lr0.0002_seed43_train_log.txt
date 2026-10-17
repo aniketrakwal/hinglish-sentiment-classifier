@@ -1,0 +1,156 @@
+python: D:\hinglish\venv\Scripts\python.exe
+torch: 2.14.1+cu126 | CUDA available: True
+GPU: NVIDIA GeForce RTX 3050 Laptop GPU | total memory 4.00 GiB
+train 14000 tweets, val 3000 tweets, max_length 64
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 23146.34it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: l3cube-pune/hing-roberta
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+parameters: total 279,228,678 | trainable 1,182,723 (0.42% of total)
+trainable parameter groups (summed over the layers):
+  base_model.model.classifier.modules_to_save.default.dense.weight: 589,824
+  base_model.model.classifier.modules_to_save.default.dense.bias: 768
+  base_model.model.classifier.modules_to_save.default.out_proj.weight: 2,304
+  base_model.model.classifier.modules_to_save.default.out_proj.bias: 3
+  base_model.model.roberta.encoder.layer.N.attention.self.query.lora_A.default.weight: 147,456
+  base_model.model.roberta.encoder.layer.N.attention.self.query.lora_B.default.weight: 147,456
+  base_model.model.roberta.encoder.layer.N.attention.self.value.lora_A.default.weight: 147,456
+  base_model.model.roberta.encoder.layer.N.attention.self.value.lora_B.default.weight: 147,456
+classification head trainable: True
+{'loss': '2.169', 'grad_norm': '2.277', 'learning_rate': '1.825e-05', 'epoch': '0.05714'}
+{'loss': '2.135', 'grad_norm': '4.079', 'learning_rate': '3.726e-05', 'epoch': '0.1143'}
+{'loss': '2.031', 'grad_norm': '4.067', 'learning_rate': '5.627e-05', 'epoch': '0.1714'}
+{'loss': '1.824', 'grad_norm': '5.267', 'learning_rate': '7.529e-05', 'epoch': '0.2286'}
+{'loss': '1.624', 'grad_norm': '5.669', 'learning_rate': '9.43e-05', 'epoch': '0.2857'}
+{'loss': '1.571', 'grad_norm': '4.153', 'learning_rate': '0.0001133', 'epoch': '0.3429'}
+{'loss': '1.531', 'grad_norm': '9.409', 'learning_rate': '0.0001323', 'epoch': '0.4'}
+{'loss': '1.628', 'grad_norm': '4.678', 'learning_rate': '0.0001513', 'epoch': '0.4571'}
+{'loss': '1.619', 'grad_norm': '3.892', 'learning_rate': '0.0001703', 'epoch': '0.5143'}
+{'loss': '1.6', 'grad_norm': '4.585', 'learning_rate': '0.0001894', 'epoch': '0.5714'}
+{'loss': '1.477', 'grad_norm': '6.623', 'learning_rate': '0.0001991', 'epoch': '0.6286'}
+{'loss': '1.5', 'grad_norm': '3.747', 'learning_rate': '0.000197', 'epoch': '0.6857'}
+{'loss': '1.503', 'grad_norm': '3.024', 'learning_rate': '0.0001948', 'epoch': '0.7429'}
+{'loss': '1.594', 'grad_norm': '5.118', 'learning_rate': '0.0001927', 'epoch': '0.8'}
+{'loss': '1.59', 'grad_norm': '4.365', 'learning_rate': '0.0001906', 'epoch': '0.8571'}
+{'loss': '1.539', 'grad_norm': '2.802', 'learning_rate': '0.0001885', 'epoch': '0.9143'}
+{'loss': '1.52', 'grad_norm': '6.135', 'learning_rate': '0.0001864', 'epoch': '0.9714'}
+{'eval_loss': '0.7554', 'eval_accuracy': '0.6623', 'eval_macro_f1': '0.6667', 'eval_f1_negative': '0.6735', 'eval_f1_neutral': '0.6098', 'eval_f1_positive': '0.7168', 'eval_runtime': '4.535', 'eval_samples_per_second': '661.5', 'eval_steps_per_second': '20.73', 'epoch': '1'}
+EPOCH 1: train loss 0.8369  val loss 0.7554  val macro-F1 0.6667  time 100.2s  peak GPU memory so far 1.17 GiB
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{'loss': '1.562', 'grad_norm': '3.864', 'learning_rate': '0.0001843', 'epoch': '1.027'}
+{'loss': '1.514', 'grad_norm': '5.797', 'learning_rate': '0.0001822', 'epoch': '1.085'}
+{'loss': '1.523', 'grad_norm': '5.045', 'learning_rate': '0.00018', 'epoch': '1.142'}
+{'loss': '1.502', 'grad_norm': '3.236', 'learning_rate': '0.0001779', 'epoch': '1.199'}
+{'loss': '1.39', 'grad_norm': '3.216', 'learning_rate': '0.0001758', 'epoch': '1.256'}
+{'loss': '1.475', 'grad_norm': '5.076', 'learning_rate': '0.0001737', 'epoch': '1.313'}
+{'loss': '1.555', 'grad_norm': '7.437', 'learning_rate': '0.0001716', 'epoch': '1.37'}
+{'loss': '1.548', 'grad_norm': '2.895', 'learning_rate': '0.0001695', 'epoch': '1.427'}
+{'loss': '1.499', 'grad_norm': '4.242', 'learning_rate': '0.0001674', 'epoch': '1.485'}
+{'loss': '1.423', 'grad_norm': '3.776', 'learning_rate': '0.0001652', 'epoch': '1.542'}
+{'loss': '1.449', 'grad_norm': '5.591', 'learning_rate': '0.0001631', 'epoch': '1.599'}
+{'loss': '1.454', 'grad_norm': '4.886', 'learning_rate': '0.000161', 'epoch': '1.656'}
+{'loss': '1.48', 'grad_norm': '3.294', 'learning_rate': '0.0001589', 'epoch': '1.713'}
+{'loss': '1.431', 'grad_norm': '3.867', 'learning_rate': '0.0001568', 'epoch': '1.77'}
+{'loss': '1.471', 'grad_norm': '4.135', 'learning_rate': '0.0001547', 'epoch': '1.827'}
+{'loss': '1.539', 'grad_norm': '6.907', 'learning_rate': '0.0001526', 'epoch': '1.885'}
+{'loss': '1.443', 'grad_norm': '3.084', 'learning_rate': '0.0001504', 'epoch': '1.942'}
+{'loss': '1.497', 'grad_norm': '3.311', 'learning_rate': '0.0001483', 'epoch': '1.999'}
+{'eval_loss': '0.7692', 'eval_accuracy': '0.6677', 'eval_macro_f1': '0.6648', 'eval_f1_negative': '0.7146', 'eval_f1_neutral': '0.547', 'eval_f1_positive': '0.7327', 'eval_runtime': '4.521', 'eval_samples_per_second': '663.6', 'eval_steps_per_second': '20.79', 'epoch': '2'}
+EPOCH 2: train loss 0.7432  val loss 0.7692  val macro-F1 0.6648  time 101.3s  peak GPU memory so far 1.17 GiB
+{'loss': '1.398', 'grad_norm': '2.764', 'learning_rate': '0.0001462', 'epoch': '2.055'}
+{'loss': '1.383', 'grad_norm': '3.154', 'learning_rate': '0.0001441', 'epoch': '2.112'}
+{'loss': '1.491', 'grad_norm': '4.286', 'learning_rate': '0.000142', 'epoch': '2.169'}
+{'loss': '1.462', 'grad_norm': '3.539', 'learning_rate': '0.0001399', 'epoch': '2.226'}
+{'loss': '1.437', 'grad_norm': '4.426', 'learning_rate': '0.0001378', 'epoch': '2.283'}
+{'loss': '1.413', 'grad_norm': '2.743', 'learning_rate': '0.0001356', 'epoch': '2.341'}
+{'loss': '1.362', 'grad_norm': '5.984', 'learning_rate': '0.0001335', 'epoch': '2.398'}
+{'loss': '1.443', 'grad_norm': '4.658', 'learning_rate': '0.0001314', 'epoch': '2.455'}
+{'loss': '1.412', 'grad_norm': '5.586', 'learning_rate': '0.0001293', 'epoch': '2.512'}
+{'loss': '1.447', 'grad_norm': '5.139', 'learning_rate': '0.0001272', 'epoch': '2.569'}
+{'loss': '1.379', 'grad_norm': '2.71', 'learning_rate': '0.0001251', 'epoch': '2.626'}
+{'loss': '1.476', 'grad_norm': '2.936', 'learning_rate': '0.000123', 'epoch': '2.683'}
+{'loss': '1.506', 'grad_norm': '6.545', 'learning_rate': '0.0001208', 'epoch': '2.741'}
+{'loss': '1.483', 'grad_norm': '3.491', 'learning_rate': '0.0001187', 'epoch': '2.798'}
+{'loss': '1.496', 'grad_norm': '3.193', 'learning_rate': '0.0001166', 'epoch': '2.855'}
+{'loss': '1.442', 'grad_norm': '5.495', 'learning_rate': '0.0001145', 'epoch': '2.912'}
+{'loss': '1.417', 'grad_norm': '4.638', 'learning_rate': '0.0001124', 'epoch': '2.969'}
+{'eval_loss': '0.7488', 'eval_accuracy': '0.6683', 'eval_macro_f1': '0.67', 'eval_f1_negative': '0.702', 'eval_f1_neutral': '0.5758', 'eval_f1_positive': '0.732', 'eval_runtime': '4.509', 'eval_samples_per_second': '665.4', 'eval_steps_per_second': '20.85', 'epoch': '3'}
+EPOCH 3: train loss 0.7190  val loss 0.7488  val macro-F1 0.6700  time 101.2s  peak GPU memory so far 1.17 GiB
+{'loss': '1.383', 'grad_norm': '3.073', 'learning_rate': '0.0001103', 'epoch': '3.025'}
+{'loss': '1.434', 'grad_norm': '3.72', 'learning_rate': '0.0001082', 'epoch': '3.082'}
+{'loss': '1.35', 'grad_norm': '4.666', 'learning_rate': '0.000106', 'epoch': '3.139'}
+{'loss': '1.4', 'grad_norm': '4.17', 'learning_rate': '0.0001039', 'epoch': '3.197'}
+{'loss': '1.337', 'grad_norm': '4.657', 'learning_rate': '0.0001018', 'epoch': '3.254'}
+{'loss': '1.489', 'grad_norm': '4.385', 'learning_rate': '9.97e-05', 'epoch': '3.311'}
+{'loss': '1.415', 'grad_norm': '3.593', 'learning_rate': '9.759e-05', 'epoch': '3.368'}
+{'loss': '1.395', 'grad_norm': '3.652', 'learning_rate': '9.548e-05', 'epoch': '3.425'}
+{'loss': '1.382', 'grad_norm': '2.583', 'learning_rate': '9.336e-05', 'epoch': '3.482'}
+{'loss': '1.339', 'grad_norm': '2.509', 'learning_rate': '9.125e-05', 'epoch': '3.539'}
+{'loss': '1.337', 'grad_norm': '3.381', 'learning_rate': '8.913e-05', 'epoch': '3.597'}
+{'loss': '1.359', 'grad_norm': '2.796', 'learning_rate': '8.702e-05', 'epoch': '3.654'}
+{'loss': '1.436', 'grad_norm': '2.96', 'learning_rate': '8.49e-05', 'epoch': '3.711'}
+{'loss': '1.427', 'grad_norm': '3.07', 'learning_rate': '8.279e-05', 'epoch': '3.768'}
+{'loss': '1.423', 'grad_norm': '3.792', 'learning_rate': '8.068e-05', 'epoch': '3.825'}
+{'loss': '1.362', 'grad_norm': '4.631', 'learning_rate': '7.856e-05', 'epoch': '3.882'}
+{'loss': '1.428', 'grad_norm': '2.997', 'learning_rate': '7.645e-05', 'epoch': '3.939'}
+{'loss': '1.424', 'grad_norm': '4.817', 'learning_rate': '7.433e-05', 'epoch': '3.997'}
+{'eval_loss': '0.7472', 'eval_accuracy': '0.6713', 'eval_macro_f1': '0.6749', 'eval_f1_negative': '0.7053', 'eval_f1_neutral': '0.5941', 'eval_f1_positive': '0.7255', 'eval_runtime': '4.538', 'eval_samples_per_second': '661.1', 'eval_steps_per_second': '20.71', 'epoch': '4'}
+EPOCH 4: train loss 0.6978  val loss 0.7472  val macro-F1 0.6749  time 102.1s  peak GPU memory so far 1.17 GiB
+{'loss': '1.244', 'grad_norm': '2.602', 'learning_rate': '7.222e-05', 'epoch': '4.053'}
+{'loss': '1.311', 'grad_norm': '3.773', 'learning_rate': '7.011e-05', 'epoch': '4.11'}
+{'loss': '1.299', 'grad_norm': '3.928', 'learning_rate': '6.799e-05', 'epoch': '4.167'}
+{'loss': '1.449', 'grad_norm': '5.876', 'learning_rate': '6.588e-05', 'epoch': '4.224'}
+{'loss': '1.314', 'grad_norm': '7.829', 'learning_rate': '6.376e-05', 'epoch': '4.281'}
+{'loss': '1.389', 'grad_norm': '3.196', 'learning_rate': '6.165e-05', 'epoch': '4.338'}
+{'loss': '1.386', 'grad_norm': '6.325', 'learning_rate': '5.953e-05', 'epoch': '4.395'}
+{'loss': '1.434', 'grad_norm': '8.31', 'learning_rate': '5.742e-05', 'epoch': '4.453'}
+{'loss': '1.343', 'grad_norm': '5.352', 'learning_rate': '5.531e-05', 'epoch': '4.51'}
+{'loss': '1.334', 'grad_norm': '6.584', 'learning_rate': '5.319e-05', 'epoch': '4.567'}
+{'loss': '1.357', 'grad_norm': '5.232', 'learning_rate': '5.108e-05', 'epoch': '4.624'}
+{'loss': '1.374', 'grad_norm': '3.206', 'learning_rate': '4.896e-05', 'epoch': '4.681'}
+{'loss': '1.395', 'grad_norm': '4.667', 'learning_rate': '4.685e-05', 'epoch': '4.738'}
+{'loss': '1.363', 'grad_norm': '4.786', 'learning_rate': '4.474e-05', 'epoch': '4.795'}
+{'loss': '1.357', 'grad_norm': '3.635', 'learning_rate': '4.262e-05', 'epoch': '4.853'}
+{'loss': '1.331', 'grad_norm': '6.086', 'learning_rate': '4.051e-05', 'epoch': '4.91'}
+{'loss': '1.351', 'grad_norm': '4.349', 'learning_rate': '3.839e-05', 'epoch': '4.967'}
+{'eval_loss': '0.7567', 'eval_accuracy': '0.6723', 'eval_macro_f1': '0.6746', 'eval_f1_negative': '0.7062', 'eval_f1_neutral': '0.5883', 'eval_f1_positive': '0.7292', 'eval_runtime': '4.519', 'eval_samples_per_second': '663.9', 'eval_steps_per_second': '20.8', 'epoch': '5'}
+EPOCH 5: train loss 0.6774  val loss 0.7567  val macro-F1 0.6746  time 101.2s  peak GPU memory so far 1.17 GiB
+{'loss': '1.299', 'grad_norm': '4.728', 'learning_rate': '3.628e-05', 'epoch': '5.023'}
+{'loss': '1.275', 'grad_norm': '3.688', 'learning_rate': '3.416e-05', 'epoch': '5.08'}
+{'loss': '1.327', 'grad_norm': '5.112', 'learning_rate': '3.205e-05', 'epoch': '5.137'}
+{'loss': '1.318', 'grad_norm': '6.37', 'learning_rate': '2.994e-05', 'epoch': '5.194'}
+{'loss': '1.348', 'grad_norm': '3.736', 'learning_rate': '2.782e-05', 'epoch': '5.251'}
+{'loss': '1.333', 'grad_norm': '5.767', 'learning_rate': '2.571e-05', 'epoch': '5.309'}
+{'loss': '1.389', 'grad_norm': '4.531', 'learning_rate': '2.359e-05', 'epoch': '5.366'}
+{'loss': '1.246', 'grad_norm': '3.108', 'learning_rate': '2.148e-05', 'epoch': '5.423'}
+{'loss': '1.344', 'grad_norm': '2.933', 'learning_rate': '1.937e-05', 'epoch': '5.48'}
+{'loss': '1.361', 'grad_norm': '4.586', 'learning_rate': '1.725e-05', 'epoch': '5.537'}
+{'loss': '1.29', 'grad_norm': '3.717', 'learning_rate': '1.514e-05', 'epoch': '5.594'}
+{'loss': '1.272', 'grad_norm': '3.561', 'learning_rate': '1.302e-05', 'epoch': '5.651'}
+{'loss': '1.358', 'grad_norm': '4.242', 'learning_rate': '1.091e-05', 'epoch': '5.709'}
+{'loss': '1.287', 'grad_norm': '4.741', 'learning_rate': '8.795e-06', 'epoch': '5.766'}
+{'loss': '1.354', 'grad_norm': '2.736', 'learning_rate': '6.681e-06', 'epoch': '5.823'}
+{'loss': '1.364', 'grad_norm': '5.938', 'learning_rate': '4.567e-06', 'epoch': '5.88'}
+{'loss': '1.426', 'grad_norm': '3.797', 'learning_rate': '2.452e-06', 'epoch': '5.937'}
+{'loss': '1.314', 'grad_norm': '3.757', 'learning_rate': '3.383e-07', 'epoch': '5.994'}
+{'eval_loss': '0.7586', 'eval_accuracy': '0.67', 'eval_macro_f1': '0.6732', 'eval_f1_negative': '0.7038', 'eval_f1_neutral': '0.589', 'eval_f1_positive': '0.7269', 'eval_runtime': '4.509', 'eval_samples_per_second': '665.4', 'eval_steps_per_second': '20.85', 'epoch': '6'}
+EPOCH 6: train loss 0.6641  val loss 0.7586  val macro-F1 0.6732  time 102.0s  peak GPU memory so far 1.17 GiB
+{'train_runtime': '614.8', 'train_samples_per_second': '136.6', 'train_steps_per_second': '4.275', 'train_loss': '1.445', 'epoch': '6'}
+
+training finished in 10.3 min | peak GPU memory: 1.17 GiB allocated, 1.21 GiB reserved
+best model on validation: {'accuracy': 0.6713, 'macro_f1': 0.6749, 'f1_negative': 0.7053, 'f1_neutral': 0.5941, 'f1_positive': 0.7255}
+saved weight files: 4.5 MB (adapter + classifier)
+saved model to models\hing-roberta_lora_r16_lr0.0002_seed43, 986 validation errors, and the summary JSON

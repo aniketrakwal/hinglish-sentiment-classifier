@@ -1,0 +1,15 @@
+[0.0 min elapsed] hing-roberta_lora_r8_lr0.0002_seed42: results exist, skipping
+[0.0 min elapsed] hing-roberta_lora_r8_lr0.0005_seed42: results exist, skipping
+learning-rate check: lr 0.0002 -> val macro-F1 0.6774
+learning-rate check: lr 0.0005 -> val macro-F1 0.6770
+chosen learning rate: 0.0002
+[0.0 min elapsed] hing-roberta_lora_r8_lr0.0002_seed42: results exist, skipping
+[0.0 min elapsed] hing-roberta_lora_r16_lr0.0002_seed42: results exist, skipping
+[0.0 min elapsed] hing-roberta_lora_r8_lr0.0002_seed43: results exist, skipping
+[0.0 min elapsed] hing-roberta_lora_r16_lr0.0002_seed43: results exist, skipping
+[0.0 min elapsed] hing-roberta_lora_r8_lr0.0002_seed44: results exist, skipping
+
+[0.0 min elapsed] starting hing-roberta_lora_r16_lr0.0002_seed44
+  done in 9.8 min | best val macro-F1 0.6814 | 94 s per epoch | peak GPU memory 1.17 GiB allocated, 1.21 GiB reserved | saved weights 4.5 MB
+
+Finished in 9.8 min. Failed: none

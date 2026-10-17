@@ -3,6 +3,7 @@
 
 Run from the project root, e.g.:
     python src/train_transformer.py --model google/muril-base-cased --seed 42
+    python src/train_transformer.py --model l3cube-pune/hing-roberta --seed 42 --lora --r 8 --lr 2e-4   (LoRA)
 
 VALIDATION ONLY: this script never reads data/processed/test.csv.
 Memory settings are made for a 4 GB GPU (frozen word embeddings, fp16, gradient checkpointing,
@@ -10,6 +11,7 @@ batch 16 x 2 accumulation) and are the same for every model.
 """
 
 import os
+import re
 
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"   # silence a harmless Windows warning
 
@@ -24,6 +26,7 @@ import pandas as pd
 import torch
 from sklearn.metrics import accuracy_score, f1_score
 from torch.utils.data import Dataset
+from peft import LoraConfig, TaskType, get_peft_model
 from transformers import (AutoModelForSequenceClassification, AutoTokenizer, DataCollatorWithPadding,
                           Trainer, TrainerCallback, TrainingArguments, set_seed)
 
@@ -90,6 +93,57 @@ def freeze_word_embeddings(model):
     return total, trainable, embedding_params
 
 
+def apply_lora(model, r):
+    """Wrap the model with LoRA adapters (Low-Rank Adaptation) and return the wrapped model.
+
+    What LoRA does: instead of changing a big weight matrix W (768 x 768) during training, W stays
+    frozen and we learn a small correction next to it:  W x  +  (alpha / r) * B A x
+    where A is (r x 768) and B is (768 x r). Only A and B are trained. With r = 8 that is
+    2 x 8 x 768 = 12,288 numbers per matrix instead of 589,824, so far fewer weights get gradients and
+    optimizer state, and the file we save is tiny. B starts at zero, so training starts from the
+    unchanged pretrained model.
+      r      = the "rank": the width of the small bottleneck. Larger r = a more flexible correction
+               (more trainable weights); smaller r = cheaper but less flexible.
+      alpha  = a scaling factor: the correction is multiplied by alpha / r. We use alpha = 2 * r, so the
+               scale is always 2 and changing r does not also change how strong the correction is.
+      dropout 0.1 = during training, 10% of the LoRA inputs are randomly zeroed (regularisation).
+    We put adapters on the attention "query" and "value" matrices of every layer. The 3-class
+    classification head is NEW (random), so it must be trained fully: task_type SEQ_CLS makes peft
+    keep it trainable and save it together with the adapters."""
+    config = LoraConfig(task_type=TaskType.SEQ_CLS, r=r, lora_alpha=2 * r, lora_dropout=0.1,
+                        target_modules=["query", "value"])
+    return get_peft_model(model, config)       # freezes every original weight, adds the A and B matrices
+
+
+def describe_trainable(model):
+    """Print total / trainable parameters, which groups are trainable, and return (total, trainable)."""
+    total = sum(p.numel() for p in model.parameters())
+    trainable = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"parameters: total {total:,} | trainable {trainable:,} ({100 * trainable / total:.2f}% of total)")
+    # Group the trainable parameter names by kind: layer numbers (".layer.7.") are replaced by ".layer.N."
+    groups = {}
+    for name, parameter in model.named_parameters():
+        if parameter.requires_grad:
+            group = re.sub(r"\.layer\.\d+\.", ".layer.N.", name)
+            groups[group] = groups.get(group, 0) + parameter.numel()
+    print("trainable parameter groups (summed over the layers):")
+    for group, count in groups.items():
+        print(f"  {group}: {count:,}")
+    print("classification head trainable:", any("classifier" in group for group in groups))
+    return total, trainable
+
+
+def weights_size_mb(path):
+    """Size in MB of the saved weight files (*.safetensors) in a model folder. The tokenizer files
+    (17 MB, identical for both methods) are left out so the comparison shows only the model weights."""
+    size = 0
+    for folder, _, files in os.walk(path):
+        for file in files:
+            if file.endswith(".safetensors"):
+                size += os.path.getsize(os.path.join(folder, file))
+    return size / 1024**2
+
+
 class EpochLogger(TrainerCallback):
     """Prints one line per epoch: train loss, val loss, val macro-F1, time."""
 
@@ -131,13 +185,24 @@ def main():
     parser.add_argument("--model", required=True, help="e.g. google/muril-base-cased")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--max_length", type=int, default=DEFAULT_MAX_LENGTH)
+    parser.add_argument("--lora", action="store_true", help="LoRA fine-tuning instead of the full fine-tune")
+    parser.add_argument("--r", type=int, default=8, help="LoRA rank (only with --lora)")
+    parser.add_argument("--lr", type=float, default=None, help="learning rate (full: 2e-5; required with --lora)")
+    parser.add_argument("--epochs", type=int, default=None, help="default: 4 for the full fine-tune, 6 for LoRA")
     parser.add_argument("--data_dir", default="data/processed")
     parser.add_argument("--results_dir", default="results")
     parser.add_argument("--models_dir", default="models")
     args = parser.parse_args()
 
     model_name = args.model.split("/")[-1]
-    run_name = f"{model_name}_seed{args.seed}"
+    if args.lora:
+        if args.lr is None:
+            sys.exit("--lora needs --lr (LoRA uses a much higher learning rate, e.g. 2e-4)")
+        run_name = f"{model_name}_lora_r{args.r}_lr{args.lr:g}_seed{args.seed}"
+    else:
+        run_name = f"{model_name}_seed{args.seed}"             # the full fine-tune keeps its old name
+    learning_rate = args.lr if args.lr is not None else 2e-5
+    epochs = args.epochs if args.epochs is not None else (6 if args.lora else 4)
     save_dir = os.path.join(args.models_dir, run_name)                  # git-ignored
     os.makedirs(args.results_dir, exist_ok=True)
 
@@ -161,20 +226,28 @@ def main():
     # ---- Model: pretrained body + a fresh 3-class classification layer on top
     model = AutoModelForSequenceClassification.from_pretrained(
         args.model, num_labels=3, id2label=ID2LABEL, label2id=LABEL2ID)
-    total, trainable, embedding_params = freeze_word_embeddings(model)
-    print(f"parameters: total {total:,} | trainable {trainable:,} | "
-          f"word-embedding table {embedding_params:,} ({100 * embedding_params / total:.1f}% of all parameters)")
+    if args.lora:
+        embedding_params = sum(p.numel() for p in model.get_input_embeddings().parameters())
+        model = apply_lora(model, args.r)                  # also freezes the embedding table and all layers
+        total, trainable = describe_trainable(model)
+    else:
+        total, trainable, embedding_params = freeze_word_embeddings(model)
+        print(f"parameters: total {total:,} | trainable {trainable:,} | "
+              f"word-embedding table {embedding_params:,} ({100 * embedding_params / total:.1f}% of all parameters)")
 
     # ---- Training settings
     # Loss: plain cross-entropy (the Trainer default). The classes are only mildly imbalanced
     # (30% / 37% / 33%), so we do not add class weights here.
     training_args = TrainingArguments(
         output_dir=os.path.join(save_dir, "checkpoints"),
-        learning_rate=2e-5,
+        # LoRA learns only small new matrices that start at zero, so each step has to move them further:
+        # the learning rate is about 10x higher (2e-4 instead of 2e-5). A full fine-tune uses a low rate
+        # because it nudges weights that are already good.
+        learning_rate=learning_rate,
         per_device_train_batch_size=16,        # 16 tweets per step ...
         gradient_accumulation_steps=2,         # ... collected over 2 steps = effective batch of 32
         per_device_eval_batch_size=32,
-        num_train_epochs=4,
+        num_train_epochs=epochs,
         warmup_steps=0.1,                      # a float below 1 = share of all steps (10% warm-up)
         weight_decay=0.01,
         fp16=True,                             # half-precision maths: faster, less memory
@@ -212,6 +285,7 @@ def main():
           f"{peak_allocated:.2f} GiB allocated, {peak_reserved:.2f} GiB reserved")
 
     # ---- Best model (already reloaded by load_best_model_at_end): save it and score validation
+    # With LoRA, save_model writes only the adapter + classification head (a few MB), not the whole model
     trainer.save_model(save_dir)
     tokenizer.save_pretrained(save_dir)
     # The per-epoch checkpoints (about 1 GB each) are no longer needed: the best model is saved above
@@ -231,8 +305,12 @@ def main():
     })[wrong].sort_values("confidence", ascending=False)
     errors.to_csv(os.path.join(args.results_dir, f"{run_name}_val_errors.csv"), index=False)
 
+    model_mb = weights_size_mb(save_dir)
+    print(f"saved weight files: {model_mb:.1f} MB ({'adapter + classifier' if args.lora else 'full model'})")
     summary = {
         "model": args.model, "seed": args.seed, "max_length": args.max_length,
+        "lora": args.lora, "r": args.r if args.lora else None, "learning_rate": learning_rate,
+        "num_epochs": epochs, "saved_model_mb": round(model_mb, 1),
         "total_params": total, "trainable_params": trainable, "embedding_params": embedding_params,
         "peak_gpu_allocated_gib": round(peak_allocated, 3), "peak_gpu_reserved_gib": round(peak_reserved, 3),
         "train_minutes": round(train_seconds / 60, 1), "best_val": {k: float(v) for k, v in final.items()},

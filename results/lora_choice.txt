@@ -1,0 +1,5 @@
+Best LoRA setup, chosen by mean validation macro-F1 (test not used yet):
+  LoRA r=8: val macro-F1 0.6759 ± 0.0014
+  LoRA r=16: val macro-F1 0.6774 ± 0.0035
+R: 16
+LEARNING_RATE: 0.0002

@@ -1,0 +1,167 @@
+python: D:\hinglish\venv\Scripts\python.exe
+torch: 2.14.1+cu126 | CUDA available: True
+GPU: NVIDIA GeForce RTX 3050 Laptop GPU | total memory 4.00 GiB
+train 14000 tweets, val 3000 tweets, max_length 64
+Loading weights:   0%|          | 0/197 [00:00<?, ?it/s]Loading weights: 100%|██████████| 197/197 [00:00<00:00, 20455.46it/s]
+[transformers] [1mXLMRobertaForSequenceClassification LOAD REPORT[0m from: l3cube-pune/hing-roberta
+Key                        | Status     | 
+---------------------------+------------+-
+lm_head.layer_norm.bias    | UNEXPECTED | 
+lm_head.dense.weight       | UNEXPECTED | 
+lm_head.bias               | UNEXPECTED | 
+lm_head.layer_norm.weight  | UNEXPECTED | 
+lm_head.dense.bias         | UNEXPECTED | 
+classifier.out_proj.bias   | MISSING    | 
+classifier.out_proj.weight | MISSING    | 
+classifier.dense.weight    | MISSING    | 
+classifier.dense.bias      | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+parameters: total 279,228,678 | trainable 1,182,723 (0.42% of total)
+trainable parameter groups (summed over the layers):
+  base_model.model.classifier.modules_to_save.default.dense.weight: 589,824
+  base_model.model.classifier.modules_to_save.default.dense.bias: 768
+  base_model.model.classifier.modules_to_save.default.out_proj.weight: 2,304
+  base_model.model.classifier.modules_to_save.default.out_proj.bias: 3
+  base_model.model.roberta.encoder.layer.N.attention.self.query.lora_A.default.weight: 147,456
+  base_model.model.roberta.encoder.layer.N.attention.self.query.lora_B.default.weight: 147,456
+  base_model.model.roberta.encoder.layer.N.attention.self.value.lora_A.default.weight: 147,456
+  base_model.model.roberta.encoder.layer.N.attention.self.value.lora_B.default.weight: 147,456
+classification head trainable: True
+{'loss': '2.226', 'grad_norm': '4.627', 'learning_rate': '1.825e-05', 'epoch': '0.05714'}
+{'loss': '2.174', 'grad_norm': '2.544', 'learning_rate': '3.726e-05', 'epoch': '0.1143'}
+{'loss': '2.077', 'grad_norm': '4.268', 'learning_rate': '5.627e-05', 'epoch': '0.1714'}
+{'loss': '1.843', 'grad_norm': '4.542', 'learning_rate': '7.529e-05', 'epoch': '0.2286'}
+{'loss': '1.571', 'grad_norm': '4.305', 'learning_rate': '9.43e-05', 'epoch': '0.2857'}
+{'loss': '1.669', 'grad_norm': '5.628', 'learning_rate': '0.0001133', 'epoch': '0.3429'}
+{'loss': '1.602', 'grad_norm': '5.253', 'learning_rate': '0.0001323', 'epoch': '0.4'}
+{'loss': '1.564', 'grad_norm': '3.745', 'learning_rate': '0.0001513', 'epoch': '0.4571'}
+{'loss': '1.562', 'grad_norm': '3.555', 'learning_rate': '0.0001703', 'epoch': '0.5143'}
+{'loss': '1.539', 'grad_norm': '6.334', 'learning_rate': '0.0001894', 'epoch': '0.5714'}
+{'loss': '1.509', 'grad_norm': '3.156', 'learning_rate': '0.0001991', 'epoch': '0.6286'}
+{'loss': '1.565', 'grad_norm': '4.216', 'learning_rate': '0.000197', 'epoch': '0.6857'}
+{'loss': '1.521', 'grad_norm': '4.729', 'learning_rate': '0.0001948', 'epoch': '0.7429'}
+{'loss': '1.575', 'grad_norm': '4.61', 'learning_rate': '0.0001927', 'epoch': '0.8'}
+{'loss': '1.534', 'grad_norm': '3.996', 'learning_rate': '0.0001906', 'epoch': '0.8571'}
+{'loss': '1.498', 'grad_norm': '6.234', 'learning_rate': '0.0001885', 'epoch': '0.9143'}
+{'loss': '1.523', 'grad_norm': '5.567', 'learning_rate': '0.0001864', 'epoch': '0.9714'}
+{'eval_loss': '0.7916', 'eval_accuracy': '0.6613', 'eval_macro_f1': '0.6552', 'eval_f1_negative': '0.7075', 'eval_f1_neutral': '0.5239', 'eval_f1_positive': '0.734', 'eval_runtime': '4.133', 'eval_samples_per_second': '725.8', 'eval_steps_per_second': '22.74', 'epoch': '1'}
+EPOCH 1: train loss 0.8398  val loss 0.7916  val macro-F1 0.6552  time 89.0s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '1.522', 'grad_norm': '2.301', 'learning_rate': '0.0001843', 'epoch': '1.027'}
+{'loss': '1.508', 'grad_norm': '2.62', 'learning_rate': '0.0001822', 'epoch': '1.085'}
+{'loss': '1.5', 'grad_norm': '3.768', 'learning_rate': '0.00018', 'epoch': '1.142'}
+{'loss': '1.558', 'grad_norm': '3.654', 'learning_rate': '0.0001779', 'epoch': '1.199'}
+{'loss': '1.535', 'grad_norm': '2.638', 'learning_rate': '0.0001758', 'epoch': '1.256'}
+{'loss': '1.447', 'grad_norm': '4.335', 'learning_rate': '0.0001737', 'epoch': '1.313'}
+{'loss': '1.425', 'grad_norm': '3.435', 'learning_rate': '0.0001716', 'epoch': '1.37'}
+{'loss': '1.47', 'grad_norm': '4.346', 'learning_rate': '0.0001695', 'epoch': '1.427'}
+{'loss': '1.544', 'grad_norm': '2.681', 'learning_rate': '0.0001674', 'epoch': '1.485'}
+{'loss': '1.466', 'grad_norm': '3.936', 'learning_rate': '0.0001652', 'epoch': '1.542'}
+{'loss': '1.381', 'grad_norm': '2.483', 'learning_rate': '0.0001631', 'epoch': '1.599'}
+{'loss': '1.546', 'grad_norm': '5.936', 'learning_rate': '0.000161', 'epoch': '1.656'}
+{'loss': '1.526', 'grad_norm': '3.085', 'learning_rate': '0.0001589', 'epoch': '1.713'}
+{'loss': '1.574', 'grad_norm': '2.827', 'learning_rate': '0.0001568', 'epoch': '1.77'}
+{'loss': '1.514', 'grad_norm': '2.514', 'learning_rate': '0.0001547', 'epoch': '1.827'}
+{'loss': '1.422', 'grad_norm': '6.429', 'learning_rate': '0.0001526', 'epoch': '1.885'}
+{'loss': '1.529', 'grad_norm': '3.454', 'learning_rate': '0.0001504', 'epoch': '1.942'}
+{'loss': '1.477', 'grad_norm': '4.213', 'learning_rate': '0.0001483', 'epoch': '1.999'}
+{'eval_loss': '0.7423', 'eval_accuracy': '0.6707', 'eval_macro_f1': '0.6749', 'eval_f1_negative': '0.702', 'eval_f1_neutral': '0.597', 'eval_f1_positive': '0.7255', 'eval_runtime': '4.322', 'eval_samples_per_second': '694.2', 'eval_steps_per_second': '21.75', 'epoch': '2'}
+EPOCH 2: train loss 0.7484  val loss 0.7423  val macro-F1 0.6749  time 93.8s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '1.361', 'grad_norm': '6.92', 'learning_rate': '0.0001462', 'epoch': '2.055'}
+{'loss': '1.42', 'grad_norm': '3.02', 'learning_rate': '0.0001441', 'epoch': '2.112'}
+{'loss': '1.4', 'grad_norm': '2.774', 'learning_rate': '0.000142', 'epoch': '2.169'}
+{'loss': '1.43', 'grad_norm': '3.423', 'learning_rate': '0.0001399', 'epoch': '2.226'}
+{'loss': '1.431', 'grad_norm': '2.993', 'learning_rate': '0.0001378', 'epoch': '2.283'}
+{'loss': '1.464', 'grad_norm': '3.36', 'learning_rate': '0.0001356', 'epoch': '2.341'}
+{'loss': '1.508', 'grad_norm': '3.249', 'learning_rate': '0.0001335', 'epoch': '2.398'}
+{'loss': '1.402', 'grad_norm': '2.289', 'learning_rate': '0.0001314', 'epoch': '2.455'}
+{'loss': '1.411', 'grad_norm': '5.368', 'learning_rate': '0.0001293', 'epoch': '2.512'}
+{'loss': '1.406', 'grad_norm': '3.041', 'learning_rate': '0.0001272', 'epoch': '2.569'}
+{'loss': '1.363', 'grad_norm': '7.907', 'learning_rate': '0.0001251', 'epoch': '2.626'}
+{'loss': '1.467', 'grad_norm': '4.473', 'learning_rate': '0.000123', 'epoch': '2.683'}
+{'loss': '1.502', 'grad_norm': '3.062', 'learning_rate': '0.0001208', 'epoch': '2.741'}
+{'loss': '1.462', 'grad_norm': '7.677', 'learning_rate': '0.0001187', 'epoch': '2.798'}
+{'loss': '1.369', 'grad_norm': '4.217', 'learning_rate': '0.0001166', 'epoch': '2.855'}
+{'loss': '1.427', 'grad_norm': '3.446', 'learning_rate': '0.0001145', 'epoch': '2.912'}
+{'loss': '1.424', 'grad_norm': '4.185', 'learning_rate': '0.0001124', 'epoch': '2.969'}
+{'eval_loss': '0.7429', 'eval_accuracy': '0.674', 'eval_macro_f1': '0.6779', 'eval_f1_negative': '0.7115', 'eval_f1_neutral': '0.5993', 'eval_f1_positive': '0.7231', 'eval_runtime': '4.422', 'eval_samples_per_second': '678.4', 'eval_steps_per_second': '21.26', 'epoch': '3'}
+EPOCH 3: train loss 0.7131  val loss 0.7429  val macro-F1 0.6779  time 95.3s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '1.38', 'grad_norm': '4.426', 'learning_rate': '0.0001103', 'epoch': '3.025'}
+{'loss': '1.33', 'grad_norm': '2.581', 'learning_rate': '0.0001082', 'epoch': '3.082'}
+{'loss': '1.379', 'grad_norm': '2.49', 'learning_rate': '0.000106', 'epoch': '3.139'}
+{'loss': '1.434', 'grad_norm': '3.702', 'learning_rate': '0.0001039', 'epoch': '3.197'}
+{'loss': '1.363', 'grad_norm': '3.528', 'learning_rate': '0.0001018', 'epoch': '3.254'}
+{'loss': '1.357', 'grad_norm': '2.779', 'learning_rate': '9.97e-05', 'epoch': '3.311'}
+{'loss': '1.463', 'grad_norm': '3.675', 'learning_rate': '9.759e-05', 'epoch': '3.368'}
+{'loss': '1.446', 'grad_norm': '2.833', 'learning_rate': '9.548e-05', 'epoch': '3.425'}
+{'loss': '1.41', 'grad_norm': '3.571', 'learning_rate': '9.336e-05', 'epoch': '3.482'}
+{'loss': '1.321', 'grad_norm': '3.487', 'learning_rate': '9.125e-05', 'epoch': '3.539'}
+{'loss': '1.344', 'grad_norm': '4.252', 'learning_rate': '8.913e-05', 'epoch': '3.597'}
+{'loss': '1.416', 'grad_norm': '6.423', 'learning_rate': '8.702e-05', 'epoch': '3.654'}
+{'loss': '1.411', 'grad_norm': '3.104', 'learning_rate': '8.49e-05', 'epoch': '3.711'}
+{'loss': '1.486', 'grad_norm': '4.253', 'learning_rate': '8.279e-05', 'epoch': '3.768'}
+{'loss': '1.382', 'grad_norm': '2.957', 'learning_rate': '8.068e-05', 'epoch': '3.825'}
+{'loss': '1.434', 'grad_norm': '4.228', 'learning_rate': '7.856e-05', 'epoch': '3.882'}
+{'loss': '1.311', 'grad_norm': '4.631', 'learning_rate': '7.645e-05', 'epoch': '3.939'}
+{'loss': '1.384', 'grad_norm': '4.151', 'learning_rate': '7.433e-05', 'epoch': '3.997'}
+{'eval_loss': '0.767', 'eval_accuracy': '0.6713', 'eval_macro_f1': '0.6707', 'eval_f1_negative': '0.7213', 'eval_f1_neutral': '0.5638', 'eval_f1_positive': '0.7271', 'eval_runtime': '4.499', 'eval_samples_per_second': '666.8', 'eval_steps_per_second': '20.89', 'epoch': '4'}
+EPOCH 4: train loss 0.6959  val loss 0.7670  val macro-F1 0.6707  time 95.1s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '1.263', 'grad_norm': '3.286', 'learning_rate': '7.222e-05', 'epoch': '4.053'}
+{'loss': '1.344', 'grad_norm': '6.292', 'learning_rate': '7.011e-05', 'epoch': '4.11'}
+{'loss': '1.356', 'grad_norm': '3.671', 'learning_rate': '6.799e-05', 'epoch': '4.167'}
+{'loss': '1.269', 'grad_norm': '4.362', 'learning_rate': '6.588e-05', 'epoch': '4.224'}
+{'loss': '1.441', 'grad_norm': '4.01', 'learning_rate': '6.376e-05', 'epoch': '4.281'}
+{'loss': '1.352', 'grad_norm': '3.694', 'learning_rate': '6.165e-05', 'epoch': '4.338'}
+{'loss': '1.399', 'grad_norm': '3.173', 'learning_rate': '5.953e-05', 'epoch': '4.395'}
+{'loss': '1.288', 'grad_norm': '4.642', 'learning_rate': '5.742e-05', 'epoch': '4.453'}
+{'loss': '1.389', 'grad_norm': '4.516', 'learning_rate': '5.531e-05', 'epoch': '4.51'}
+{'loss': '1.284', 'grad_norm': '4.464', 'learning_rate': '5.319e-05', 'epoch': '4.567'}
+{'loss': '1.361', 'grad_norm': '3.733', 'learning_rate': '5.108e-05', 'epoch': '4.624'}
+{'loss': '1.327', 'grad_norm': '4.767', 'learning_rate': '4.896e-05', 'epoch': '4.681'}
+{'loss': '1.401', 'grad_norm': '4.536', 'learning_rate': '4.685e-05', 'epoch': '4.738'}
+{'loss': '1.403', 'grad_norm': '3.727', 'learning_rate': '4.474e-05', 'epoch': '4.795'}
+{'loss': '1.293', 'grad_norm': '3.575', 'learning_rate': '4.262e-05', 'epoch': '4.853'}
+{'loss': '1.427', 'grad_norm': '4.19', 'learning_rate': '4.051e-05', 'epoch': '4.91'}
+{'loss': '1.373', 'grad_norm': '4.614', 'learning_rate': '3.839e-05', 'epoch': '4.967'}
+{'eval_loss': '0.7529', 'eval_accuracy': '0.6773', 'eval_macro_f1': '0.6809', 'eval_f1_negative': '0.7128', 'eval_f1_neutral': '0.6022', 'eval_f1_positive': '0.7278', 'eval_runtime': '4.481', 'eval_samples_per_second': '669.5', 'eval_steps_per_second': '20.98', 'epoch': '5'}
+EPOCH 5: train loss 0.6756  val loss 0.7529  val macro-F1 0.6809  time 96.4s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': '1.378', 'grad_norm': '3.525', 'learning_rate': '3.628e-05', 'epoch': '5.023'}
+{'loss': '1.266', 'grad_norm': '4.459', 'learning_rate': '3.416e-05', 'epoch': '5.08'}
+{'loss': '1.222', 'grad_norm': '4.63', 'learning_rate': '3.205e-05', 'epoch': '5.137'}
+{'loss': '1.292', 'grad_norm': '5.632', 'learning_rate': '2.994e-05', 'epoch': '5.194'}
+{'loss': '1.359', 'grad_norm': '4.217', 'learning_rate': '2.782e-05', 'epoch': '5.251'}
+{'loss': '1.32', 'grad_norm': '3.441', 'learning_rate': '2.571e-05', 'epoch': '5.309'}
+{'loss': '1.372', 'grad_norm': '3.093', 'learning_rate': '2.359e-05', 'epoch': '5.366'}
+{'loss': '1.272', 'grad_norm': '4.151', 'learning_rate': '2.148e-05', 'epoch': '5.423'}
+{'loss': '1.389', 'grad_norm': '4.736', 'learning_rate': '1.937e-05', 'epoch': '5.48'}
+{'loss': '1.474', 'grad_norm': '4.703', 'learning_rate': '1.725e-05', 'epoch': '5.537'}
+{'loss': '1.331', 'grad_norm': '4.454', 'learning_rate': '1.514e-05', 'epoch': '5.594'}
+{'loss': '1.299', 'grad_norm': '3.959', 'learning_rate': '1.302e-05', 'epoch': '5.651'}
+{'loss': '1.323', 'grad_norm': '4.37', 'learning_rate': '1.091e-05', 'epoch': '5.709'}
+{'loss': '1.264', 'grad_norm': '3.453', 'learning_rate': '8.795e-06', 'epoch': '5.766'}
+{'loss': '1.368', 'grad_norm': '4.084', 'learning_rate': '6.681e-06', 'epoch': '5.823'}
+{'loss': '1.353', 'grad_norm': '3.376', 'learning_rate': '4.567e-06', 'epoch': '5.88'}
+{'loss': '1.26', 'grad_norm': '6.784', 'learning_rate': '2.452e-06', 'epoch': '5.937'}
+{'loss': '1.334', 'grad_norm': '3.477', 'learning_rate': '3.383e-07', 'epoch': '5.994'}
+{'eval_loss': '0.7608', 'eval_accuracy': '0.6787', 'eval_macro_f1': '0.6814', 'eval_f1_negative': '0.7218', 'eval_f1_neutral': '0.5949', 'eval_f1_positive': '0.7275', 'eval_runtime': '4.493', 'eval_samples_per_second': '667.7', 'eval_steps_per_second': '20.92', 'epoch': '6'}
+EPOCH 6: train loss 0.6632  val loss 0.7608  val macro-F1 0.6814  time 95.6s  peak GPU memory so far 1.17 GiB
+D:\hinglish\venv\Lib\site-packages\peft\utils\save_and_load.py:313: UserWarning: Could not find a config file in l3cube-pune/hing-roberta - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'train_runtime': '565.7', 'train_samples_per_second': '148.5', 'train_steps_per_second': '4.645', 'train_loss': '1.443', 'epoch': '6'}
+
+training finished in 9.4 min | peak GPU memory: 1.17 GiB allocated, 1.21 GiB reserved
+best model on validation: {'accuracy': 0.6787, 'macro_f1': 0.6814, 'f1_negative': 0.7218, 'f1_neutral': 0.5949, 'f1_positive': 0.7275}
+saved weight files: 4.5 MB (adapter + classifier)
+saved model to models\hing-roberta_lora_r16_lr0.0002_seed44, 964 validation errors, and the summary JSON
